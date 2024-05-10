@@ -1,6 +1,6 @@
 import ChallanStatistics from "./ChallanStatistics";
 import Statistics from "./Statistics";
 import AddChallanButton from "./AddChallanButton";
-import AdminProfile from "./AdminProfile";
+import OfficerProfile from "./OfficerProfile";
 
-export { ChallanStatistics, Statistics, AddChallanButton, AdminProfile };
+export { ChallanStatistics, Statistics, AddChallanButton, OfficerProfile };

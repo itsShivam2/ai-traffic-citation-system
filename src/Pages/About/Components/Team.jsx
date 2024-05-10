@@ -17,10 +17,10 @@ function Team() {
       <div className="bg-[#111827] dark:bg-gray-800 py-20">
         <div className="container mx-auto px-6 md:px-12 xl:px-32">
           <div className="mb-16">
-            <h2 className="mb-4 text-center text-2xl font-bold text-gray-100 md:text-4xl">
+            <h2 className="mb-4 text-center text-5xl font-bold font-[Fahkwang] text-gray-100 md:text-6xl">
               Team
             </h2>
-            <p className="text-gray-100 dark:text-gray-300 lg:mx-auto lg:w-8/12">
+            <p className="text-gray-100 font-[Montserrat] dark:text-gray-300 lg:mx-auto lg:w-8/12">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -38,8 +38,12 @@ function Team() {
                 height="805"
               />
               <div>
-                <h4 className="text-2xl text-white">Sanjay Chaurasiya</h4>
-                <span className="block text-sm text-gray-100">AI Models</span>
+                <h4 className="text-2xl text-white font-[Fahkwang]">
+                  Sanjay Chaurasiya
+                </h4>
+                <span className="block text-lg text-gray-100 font-[Montserrat]">
+                  AI Models
+                </span>
               </div>
             </div>
             <div className="space-y-4 text-center">
@@ -52,8 +56,12 @@ function Team() {
                 height="667"
               />
               <div>
-                <h4 className="text-2xl text-white">Shardul Sisodiya</h4>
-                <span className="block text-sm text-gray-100">Backend</span>
+                <h4 className="text-2xl text-white font-[Fahkwang]">
+                  Shardul Sisodiya
+                </h4>
+                <span className="block text-lg text-gray-100 font-[Montserrat]">
+                  Backend
+                </span>
               </div>
             </div>
             <div className="space-y-4 text-center">
@@ -66,8 +74,12 @@ function Team() {
                 height="667"
               />
               <div>
-                <h4 className="text-2xl text-white">Shivam Gupta</h4>
-                <span className="block text-sm text-gray-100">Frotend</span>
+                <h4 className="text-2xl text-white font-[Fahkwang]">
+                  Shivam Gupta
+                </h4>
+                <span className="block text-lg text-gray-100 font-[Montserrat]">
+                  Frotend
+                </span>
               </div>
             </div>
           </div>

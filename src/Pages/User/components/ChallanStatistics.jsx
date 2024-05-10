@@ -3,7 +3,7 @@ import React from "react";
 function ChallanStatistics() {
   return (
     <div className="bg-[#111827] pt-4">
-      <h2 className="text-3xl text-center text-gray-100 font-semibold mb-8 pt-8">
+      <h2 className="text-3xl text-center text-gray-100 font-semibold font-[Fahkwang] mb-8 pt-8">
         Challans List
       </h2>
       <section className="bg-[#111827] container px-4 pt-8 pb-16 mx-auto">
@@ -19,7 +19,7 @@ function ChallanStatistics() {
                         className="py-3.5 px-4 text-sm font-normal text-left rtl:text-right text-gray-100"
                       >
                         <div className="flex items-center gap-x-3">
-                          <button className="flex items-center gap-x-2">
+                          <button className="flex items-center gap-x-2 font-[Fahkwang]">
                             <span>Challan No.</span>
                           </button>
                         </div>
@@ -27,28 +27,28 @@ function ChallanStatistics() {
 
                       <th
                         scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
+                        className="px-4 py-3.5 text-sm font-[Fahkwang] text-left rtl:text-right text-gray-100"
                       >
                         Date
                       </th>
 
                       <th
                         scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
+                        className="px-4 py-3.5 text-sm font-[Fahkwang] text-left rtl:text-right text-gray-100"
                       >
                         Vehicle No.
                       </th>
 
                       <th
                         scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
+                        className="px-4 py-3.5 text-sm font-[Fahkwang] text-left rtl:text-right text-gray-100"
                       >
                         Status
                       </th>
 
                       <th
                         scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
+                        className="px-4 py-3.5 text text-sm font-[Fahkwang] text-left rtl:text-right text-gray-100"
                       >
                         Action
                       </th>
@@ -58,7 +58,7 @@ function ChallanStatistics() {
                       </th> */}
                     </tr>
                   </thead>
-                  <tbody className="bg-[#111827] text-gray-100 divide-y divide-gray-200">
+                  <tbody className="bg-[#111827] text-gray-100 divide-y divide-gray-200 font-[Montserrat]">
                     <tr>
                       <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
@@ -147,7 +147,7 @@ function ChallanStatistics() {
         </div>
 
         {/* Pagination Buttons */}
-        <div className="flex items-center justify-between mt-6">
+        <div className="flex items-center justify-between mt-6 font-[Fahkwang]">
           <a
             href="#"
             className="flex items-center px-5 py-2 text-sm text-gray-700 capitalize transition-colors duration-200 bg-white border rounded-md gap-x-2 hover:bg-gray-100 dark:bg-gray-900 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800"

@@ -9,7 +9,7 @@ function ChallanStatistics() {
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-                  <thead className="bg-[#263658] text-gray-100">
+                  <thead className="bg-[#263658] text-gray-100 font-[Fahkwang]">
                     <tr>
                       <th
                         scope="col"
@@ -55,7 +55,7 @@ function ChallanStatistics() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-[#111827]  divide-y divide-gray-200">
+                  <tbody className="bg-[#111827] divide-y divide-gray-200 font-[Montserrat]">
                     <tr>
                       <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
@@ -120,7 +120,7 @@ function ChallanStatistics() {
                     </tr>
 
                     <tr>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
+                      <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
                         <div className="inline-flex items-center gap-x-3">
                           <span>#3066</span>
                         </div>
@@ -157,10 +157,10 @@ function ChallanStatistics() {
                             alt=""
                           />
                           <div>
-                            <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
+                            <h2 className="text-sm font-medium text-gray-100">
                               User2
                             </h2>
-                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
+                            <p className="text-xs font-normal text-gray-100">
                               user2@example.com
                             </p>
                           </div>
@@ -173,195 +173,6 @@ function ChallanStatistics() {
                         <div className="flex items-center gap-x-6">
                           <button className="text-gray-100 transition-colors duration-200 hover:text-teal-500 focus:outline-none">
                             Pay
-                          </button>
-
-                          <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
-                            Download
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <span>#3066</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                        Jan 6, 2022
-                      </td>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
-                          <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M10 3L4.5 8.5L2 6"
-                              stroke="currentColor"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-
-                          <h2 className="text-sm font-normal">Paid</h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          <img
-                            className="object-cover w-8 h-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=761&q=80"
-                            alt=""
-                          />
-                          <div>
-                            <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-                              Kate Morrison
-                            </h2>
-                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                              kate@example.com
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                        UP-53 CZ-1234
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                            View
-                          </button>
-
-                          <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
-                            Download
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <span>#3066</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                        Jan 6, 2022
-                      </td>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
-                          <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M10 3L4.5 8.5L2 6"
-                              stroke="currentColor"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-
-                          <h2 className="text-sm font-normal">Paid</h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          <img
-                            className="object-cover w-8 h-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1344&q=80"
-                            alt=""
-                          />
-                          <div>
-                            <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-                              Candice Wu
-                            </h2>
-                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                              candice@example.com
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                        UP-53 CZ-1234
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                            View
-                          </button>
-
-                          <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">
-                            Download
-                          </button>
-                        </div>
-                      </td>
-                    </tr>
-
-                    <tr>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
-                        <div className="inline-flex items-center gap-x-3">
-                          <span>#3066</span>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                        Jan 6, 2022
-                      </td>
-                      <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
-                        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
-                          <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 12 12"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              d="M10 3L4.5 8.5L2 6"
-                              stroke="currentColor"
-                              strokeWidth="1.5"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-
-                          <h2 className="text-sm font-normal">Paid</h2>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                        <div className="flex items-center gap-x-2">
-                          <img
-                            className="object-cover w-8 h-8 rounded-full"
-                            src="https://images.unsplash.com/photo-1528892952291-009c663ce843?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=644&q=80"
-                            alt=""
-                          />
-                          <div>
-                            <h2 className="text-sm font-medium text-gray-800 dark:text-white ">
-                              Orlando Diggs
-                            </h2>
-                            <p className="text-xs font-normal text-gray-600 dark:text-gray-400">
-                              orlando@example.com
-                            </p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                        UP-53 CZ-1234
-                      </td>
-                      <td className="px-4 py-4 text-sm whitespace-nowrap">
-                        <div className="flex items-center gap-x-6">
-                          <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                            View
                           </button>
 
                           <button className="text-blue-500 transition-colors duration-200 hover:text-indigo-500 focus:outline-none">

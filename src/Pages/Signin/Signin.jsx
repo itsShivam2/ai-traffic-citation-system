@@ -1,7 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import Layout from "../../Components/Layout/Layout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../../redux/userActions";
+import { toast } from "react-toastify";
 function Login() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [selectedTab, setSelectedTab] = useState("officer");
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleTabChange = (tab) => {
+    setSelectedTab(tab);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    dispatch(login(formData))
+      .then(({ success }) => {
+        if (success) {
+          toast.success("Login successful");
+          setTimeout(() => {
+            navigate("/");
+          }, 3000);
+        } else {
+          toast.error("Login failed. Please try again.");
+        }
+      })
+      .catch((error) => {
+        // toast.error("Login failed. Please try again.");
+        console.error("Login error:", error);
+      });
+  };
+
   return (
     <div>
       <Layout>
@@ -17,17 +59,24 @@ function Login() {
 
             <div className="flex items-center w-full max-w-3xl p-8 mx-auto lg:px-12 lg:w-3/5">
               <div className="w-full">
-                <h1 className="text-2xl font-semibold tracking-wider text-gray-100 capitalize dark:text-white">
+                <h1 className="text-2xl font-semibold font-[Fahkwang] tracking-wider text-gray-100 capitalize dark:text-white">
                   Sign in to your account
                 </h1>
 
-                <p className="mt-4 text-gray-100 dark:text-gray-400">
+                <p className="mt-4 text-gray-100 font-[Montserrat] dark:text-gray-400">
                   Let’s get you all set up so you can verify your personal
                   account and begin setting up your profile.
                 </p>
 
                 <div className="mt-3 md:flex md:items-center md:-mx-2">
-                  <button className="flex justify-center w-full px-6 py-3 text-white bg-blue-500 rounded-lg md:w-auto md:mx-2 focus:outline-none">
+                  <button
+                    className={`flex justify-center w-full px-6 py-3  rounded-lg md:w-auto md:mx-2 focus:outline-none ${
+                      selectedTab === "officer"
+                        ? "bg-blue-500 text-white"
+                        : "text-blue-500"
+                    }`}
+                    onClick={() => handleTabChange("officer")}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -43,10 +92,17 @@ function Login() {
                       />
                     </svg>
 
-                    <span className="mx-2">Officer</span>
+                    <span className="mx-2 font-[Fahkwang]">Officer</span>
                   </button>
 
-                  <button className="flex justify-center w-full px-6 py-3 mt-4 text-blue-500 border border-blue-500 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:border-blue-400 dark:text-blue-400 focus:outline-none">
+                  <button
+                    className={`flex justify-center w-full px-6 py-3 mt-4 rounded-lg md:mt-0 md:w-auto md:mx-2 dark:text-blue-400 focus:outline-none ${
+                      selectedTab === "user"
+                        ? "bg-blue-500 text-white"
+                        : " text-blue-500"
+                    }`}
+                    onClick={() => handleTabChange("user")}
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       className="w-6 h-6"
@@ -62,19 +118,31 @@ function Login() {
                       />
                     </svg>
 
-                    <span className="mx-2">User </span>
+                    <span className="mx-2 font-[Fahkwang]">User </span>
                   </button>
                 </div>
 
-                <form className="grid grid-cols-1 gap-y-6 md:gap-6 mt-8 md:grid-cols-2">
+                <form
+                  onSubmit={handleLogin}
+                  className="grid grid-cols-1 gap-y-6 md:gap-6 mt-8 md:grid-cols-2 font-[Montserrat]"
+                >
                   <div className="col-span-2">
                     <label className="block mb-2 text-sm text-gray-100 dark:text-gray-200">
-                      Email address
+                      {selectedTab === "officer"
+                        ? "Officer ID"
+                        : "Email Address"}
                     </label>
                     <input
                       type="email"
-                      placeholder="johndoe@example.com"
-                      className="block w-full px-5 py-3 mt-2 text-gray-100 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      placeholder={
+                        selectedTab === "officer"
+                          ? "Enter your officer ID"
+                          : "johndoe@example.com"
+                      }
+                      name={selectedTab === "officer" ? "email" : "email"}
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="block w-full px-5 py-3 mt-2 text-gray-950 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
@@ -85,12 +153,18 @@ function Login() {
                     <input
                       type="password"
                       placeholder="Enter your password"
-                      className="block w-full px-5 py-3 mt-2 text-gray-100 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      name="password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      className="block w-full px-5 py-3 mt-2 text-gray-950 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
                   <div className="flex flex-col items-center gap-4 md:flex-row md:col-span-2">
-                    <button className="w-full md:w-1/2 flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                    <button
+                      type="submit"
+                      className="w-full md:w-1/2 flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                    >
                       <span>Sign In </span>
 
                       <svg

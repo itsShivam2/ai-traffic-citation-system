@@ -7,6 +7,8 @@ import NodeJS from "./IconsImages/NodeJs.svg";
 import MongoDB from "./IconsImages/MongoDB.svg";
 import Tailwind from "./IconsImages/Tailwind.png";
 import ExpressJS from "./IconsImages/ExpressJS.png";
+import PostgreSQL from "./IconsImages/PostgreSQL.svg";
+import Prisma from "./IconsImages/Prisma.svg";
 import EasyOCR from "./IconsImages/EasyOCR.jpg";
 import TrOCR from "./IconsImages/TrOCR.jpg";
 import YOLOV3 from "./IconsImages/YOLOV3.jpg";
@@ -30,6 +32,8 @@ export {
   NodeJS,
   MongoDB,
   ExpressJS,
+  PostgreSQL,
+  Prisma,
   EasyOCR,
   TrOCR,
   YOLOV3,

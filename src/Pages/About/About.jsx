@@ -29,7 +29,7 @@ function About() {
           <hr className="border-t border-gray-100 mb-6 mx-8" />
 
           <div
-            className="w-full bg-center bg-cover h-[38rem]"
+            className="w-full bg-center bg-cover h-[38rem] reveal-element"
             style={{
               backgroundImage:
                 "url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80')",
@@ -37,11 +37,11 @@ function About() {
           >
             <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
               <div className="flex flex-col items-center text-center">
-                <h1 className="text-3xl font-semibold text-white lg:text-4xl">
+                <h1 className="text-4xl font-semibold font-[Fahkwang] text-white lg:text-5xl">
                   Our <span className="text-blue-400">Founding Story</span>
                 </h1>
                 <p className="w-full sm:w-4/5 px-5 py-2 mt-4 text-sm font-medium text-white text-center capitalize">
-                <p className="text-base text-gray-300 lg:w-[95%]">
+                <p className="text-base font-[Montserrat] text-gray-300 lg:w-[95%]">
               At the heart of our website lies a shared vision — a vision born
               out of the necessity to confront the escalating challenges in
               modern traffic management. The persistent surge in traffic
@@ -51,7 +51,7 @@ function About() {
               solution that would transcend the conventional norms of road
               safety.
             </p>
-            <p className="text-base font-medium text-gray-300 lg:w-[95%]">
+            <p className="text-base font-medium font-[Montserrat] text-gray-300 lg:w-[95%]">
               This journey led us to the creation of an innovative Echallan
               system. More than a mere tool for detecting and penalizing
               offenders, it became a symbol of our dedication to fostering a

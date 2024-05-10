@@ -1,9 +1,22 @@
-import React from "react";
+import React,{useEffect} from "react";
 import * as IconsAndImages from "../../../Assets/IconsAndImages";
+import ScrollReveal from "scrollreveal";
 function OurMission() {
+
+
+  useEffect(() => {
+    ScrollReveal().reveal(".reveal-element", {
+      origin: "bottom",
+      distance: "20px",
+      duration: 1000,
+      delay: 200,
+      easing: "ease-in-out",
+      reset: true,
+    });
+  }, []);
   return (
     <div>
-      <section className="py-12 bg-gray-900 text-gray-100 sm:py-16 lg:py-20">
+      <section className="py-12 bg-gray-900 text-gray-100 sm:py-16 lg:py-20 reveal-element">
         <div className="px-4 mx-auto container">
           <div className="grid grid-cols-1 lg:items-center gap-y-8 lg:grid-cols-2 md:gap-y-16 lg:gap-x-16">
             <div>
@@ -33,10 +46,10 @@ function OurMission() {
 
             <div>
               <div className="lg:text-left">
-                <h2 className="text-3xl font-bold sm:text-4xl xl:text-5xl font-pj">
+                <h2 className="text-3xl font-bold font-[Fahkwang] sm:text-4xl xl:text-5xl font-pj">
                   Our Mission
                 </h2>
-                <p className="mt-4 text-base leading-7 text-gray-300 font-pj sm:mt-8">
+                <p className="mt-4 text-base leading-7 text-gray-300 font-pj font-[Montserrat] sm:mt-8">
                   Welcome to our website, where innovation meets road safety.
                   Our mission is to revolutionize traffic management in the face
                   of escalating vehicular density and ensure safer roads for

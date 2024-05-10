@@ -29,10 +29,10 @@ function Statistics() {
                   </svg>
                 </span>
               </div>
-              <p className="text-center text-4xl mb-2 font-bold text-white">
+              <p className="text-center text-4xl font-[Fahkwang] mb-2 font-bold text-white">
                 819
               </p>
-              <p className="text-center text-md mb-2 font-bold text-white">
+              <p className="text-center text-md mb-2 font-bold font-[Montserrat] text-white">
                 Users
               </p>
               {/* <p className="text-center text-gray-700">
@@ -64,10 +64,10 @@ function Statistics() {
                   </svg>
                 </span>
               </div>
-              <p className="text-center text-4xl mb-2 font-bold text-white">
+              <p className="text-center text-4xl mb-2 font-bold font-[Fahkwang] text-white">
                 1.3K
               </p>
-              <p className="text-center text-md mb-2 font-bold text-white">
+              <p className="text-center text-md mb-2 font-bold font-[Montserrat] text-white">
                 Challan
               </p>
             </div>
@@ -95,10 +95,10 @@ function Statistics() {
                   </svg>
                 </span>
               </div>
-              <p className="text-center text-4xl mb-2 font-bold text-white">
+              <p className="text-center text-4xl mb-2 font-bold font-[Fahkwang] text-white">
                 91
               </p>
-              <p className="text-center text-md mb-2 font-bold text-white">
+              <p className="text-center text-md mb-2 font-bold font-[Montserrat] text-white">
                 Paid
               </p>
             </div>
@@ -124,10 +124,10 @@ function Statistics() {
                   </svg>
                 </span>
               </div>
-              <p className="text-center text-4xl mb-2 font-bold text-white">
+              <p className="text-center text-4xl mb-2 font-bold font-[Fahkwang] text-white">
                 52
               </p>
-              <p className="text-center text-md mb-2 font-bold text-white">
+              <p className="text-center text-md mb-2 font-bold font-[Montserrat] text-white">
                 Pending
               </p>
             </div>

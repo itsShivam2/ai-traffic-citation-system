@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-function AdminProfile() {
+function OfficerProfile() {
 
   return (
     <div>
@@ -10,7 +10,7 @@ function AdminProfile() {
             alt=""
             className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
           />
-          <div className="space-y-4 text-center divide-y dark:divide-gray-700">
+          <div className="space-y-4 text-center font-[Fahkwang] divide-y dark:divide-gray-700">
             <div className="my-2 space-y-1">
               <h2 className="text-xl font-semibold sm:text-2xl text-gray-100">
                 Officer Name
@@ -30,4 +30,4 @@ function AdminProfile() {
   );
 }
 
-export default AdminProfile;
+export default OfficerProfile;

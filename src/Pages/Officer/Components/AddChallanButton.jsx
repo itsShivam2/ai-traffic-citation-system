@@ -9,7 +9,7 @@ function AddChallanButton() {
           to="/officer/addchallan"
           className="sm:w-1/4 lg:w-1/6 flex justify-end items-center px-4 my-4"
         >
-          <button className="w-full flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+          <button className="w-full flex items-center justify-between px-6 py-3 text-sm font-[Fahkwang] tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
             <span>Add Challan</span>
 
             <svg

@@ -12,7 +12,7 @@ function RegisteredVehicles() {
                   <tr>
                     <th
                       scope="col"
-                      class="py-3.5 px-4 text-sm font-normal text-left rtl:text-right"
+                      class="py-3.5 px-4 text-sm font-normal font-[Fahkwang] text-left rtl:text-right"
                     >
                       <button class="flex items-center gap-x-3 focus:outline-none">
                         <span>Vehicle No.</span>
@@ -21,14 +21,14 @@ function RegisteredVehicles() {
 
                     <th
                       scope="col"
-                      class="px-12 py-3.5 text-sm font-normal text-left rtl:text-right"
+                      class="px-12 py-3.5 text-sm font-normal font-[Fahkwang] text-left rtl:text-right"
                     >
                       Vehicle Type
                     </th>
 
                     <th
                       scope="col"
-                      class="px-4 py-3.5 text-sm font-normal text-left rtl:text-right"
+                      class="px-4 py-3.5 text-sm font-normal font-[Fahkwang] text-left rtl:text-right"
                     >
                       Action
                     </th>
@@ -38,7 +38,7 @@ function RegisteredVehicles() {
                     </th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 text-gray-100">
+                <tbody class="divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 text-gray-100 font-[Montserrat]">
                   <tr>
                     <td class="px-4 py-4 text-sm font-medium whitespace-nowrap">
                       <p class="text-sm font-normal text-gray-100">
