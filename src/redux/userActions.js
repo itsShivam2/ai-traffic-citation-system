@@ -2,15 +2,15 @@ import { setUser, clearUser, setLoading, setError } from "./userSlice";
 import axios from "axios";
 
 // Signup
-export const signup = (userData) => async (dispatch) => {
+export const signup = (userData, apiEndpoint) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      "http://localhost:5000/api/auth/signup",
+      `http://localhost:5000/api/v1/auth/signup/${apiEndpoint}`,
       userData,
       { withCredentials: true }
     );
-    if (response.status === 200) {
+    if (response.status === 201) {
       dispatch(
         setUser({
           isAuthenticated: true,
@@ -26,11 +26,11 @@ export const signup = (userData) => async (dispatch) => {
 };
 
 // Login
-export const login = (userData) => async (dispatch) => {
+export const login = (userData, apiEndpoint) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      "http://localhost:5000/api/auth/login",
+      `http://localhost:5000/api/v1/auth/login/${apiEndpoint}`,
       userData,
       {
         withCredentials: true,

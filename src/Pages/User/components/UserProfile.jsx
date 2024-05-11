@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import RegisteredVehicles from "./RegisteredVehicles";
 import AddVehicleButton from "./AddVehicleButton";
 import ModalComponent from "./ModalComponent";
+import { FaEdit } from "react-icons/fa";
 function UserProfile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -13,18 +14,30 @@ function UserProfile() {
     setIsModalOpen(false);
   };
 
+  const openEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
+
   return (
     <div>
       <div className="bg-[#000814] w-full flex flex-col md:flex-row items-center justify-center">
-        <div className="bg-[#111827] w-full md:w-2/5 md:h-[550px] flex flex-col justify-center p-6 shadow-md rounded-xl sm:px-12">
+        <div className="bg-[#111827] w-full md:w-2/5 md:h-[550px] flex flex-col items-center justify-center p-6 shadow-md rounded-xl sm:px-12">
           <img
             src="https://source.unsplash.com/150x150/?portrait?3"
             alt=""
             className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
           />
+          <FaEdit
+            className="right-1/2 text-gray-300 cursor-pointer my-2"
+            onClick={openEditModal}
+          />
           <div className="space-y-4 text-center divide-y dark:divide-gray-700">
-            <div className="my-2 space-y-1">
-              <h2 className="text-xl font-semibold sm:text-2xl text-gray-100 font-[Fahkwang]">
+            <div className="flex flex-col my-2 space-y-1">
+              <h2 className="text-xl font-semibold sm:text-2xl text-gray-100 font-[Fahkwang] py-4">
                 User Name
               </h2>
               <p className="px-5 text-xs sm:text-base text-gray-100 font-[Fahkwang]">

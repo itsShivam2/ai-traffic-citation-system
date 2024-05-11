@@ -6,8 +6,8 @@ function UserDashboard() {
   return (
     <div>
       <Layout>
-        <UserProfile/>
-        <ChallanStatistics/>
+        <UserProfile />
+        <ChallanStatistics />
       </Layout>
     </div>
   );

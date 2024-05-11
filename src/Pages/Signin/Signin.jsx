@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/userActions";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,20 +28,21 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(login(formData))
+    const apiEndpoint = selectedTab === "officer" ? "officer" : "user";
+    dispatch(login(formData, apiEndpoint))
       .then(({ success }) => {
         if (success) {
-          toast.success("Login successful");
+          toast.success("Signin successful");
           setTimeout(() => {
             navigate("/");
           }, 3000);
         } else {
-          toast.error("Login failed. Please try again.");
+          toast.error("Signin failed. Please try again.");
         }
       })
       .catch((error) => {
-        // toast.error("Login failed. Please try again.");
-        console.error("Login error:", error);
+        toast.error("Signin failed. Please try again.");
+        console.error("Signin error:", error);
       });
   };
 

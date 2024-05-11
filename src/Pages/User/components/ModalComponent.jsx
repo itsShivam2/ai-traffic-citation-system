@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 
 const ModalComponent = ({ closeModal }) => {
-  const [isOpen, setIsOpen] = useState(true);
 
   const [formData, setFormData] = useState({
     vehicleNumber: "",
@@ -32,7 +31,6 @@ const ModalComponent = ({ closeModal }) => {
 
   return (
     <div className="relative flex justify-center">
-      {isOpen && (
         <div
           className="fixed inset-0 z-10 overflow-y-auto"
           aria-labelledby="modal-title"
@@ -101,7 +99,7 @@ const ModalComponent = ({ closeModal }) => {
                 <div className="mt-4 sm:flex sm:items-center sm:-mx-2">
                   <button
                     type="button"
-                    onClick={() => setIsOpen(false)}
+                    onClick={() => handleCancel()}
                     className="w-full px-4 py-2 text-sm font-medium font-[Fahkwang] tracking-wide text-gray-700 capitalize transition-colors duration-300 transform border border-gray-200 rounded-md sm:w-1/2 sm:mx-2 dark:text-gray-200 dark:border-gray-700 dark:hover:bg-gray-800 hover:bg-gray-100 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-40"
                   >
                     Cancel
@@ -118,7 +116,6 @@ const ModalComponent = ({ closeModal }) => {
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 };

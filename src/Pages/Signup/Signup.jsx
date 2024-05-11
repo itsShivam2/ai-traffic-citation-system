@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../redux/userActions";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ function Signup() {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
-    virtualId: "",
+    uid: "",
+    officerId: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -48,7 +50,9 @@ function Signup() {
       name: fullName,
     };
 
-    dispatch(signup(combinedFormData))
+    const apiEndpoint = selectedTab === "officer" ? "officer" : "user";
+
+    dispatch(signup(combinedFormData, apiEndpoint))
       .then(({ success }) => {
         if (success) {
           toast.success("Signup successful");
@@ -183,14 +187,20 @@ function Signup() {
 
                   <div>
                     <label className="block mb-2 text-sm text-gray-100 dark:text-gray-200">
-                      Virtual ID Number
+                      {selectedTab === "officer" ? "Officer ID" : "Virtual ID"}
                     </label>
                     <input
                       type="text"
-                      name="virtualId"
-                      value={formData.virtualId}
+                      name={selectedTab === "officer" ? "officerId" : "uid"}
+                      value={
+                        selectedTab === "officer"
+                          ? formData.officerId
+                          : formData.uid
+                      }
                       onChange={handleChange}
-                      placeholder="XXX-XX-XXXX"
+                      placeholder={
+                        selectedTab === "officer" ? "1234567890" : "XXX-XX-XXXX"
+                      }
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
@@ -229,7 +239,10 @@ function Signup() {
                     </label>
                     <input
                       type="password"
-                      placeholder="Enter your password"
+                      name="confirmPassword"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                      placeholder="Confirm your password"
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
