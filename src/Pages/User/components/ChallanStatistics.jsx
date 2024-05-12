@@ -179,7 +179,7 @@ function ChallanStatistics() {
   useEffect(() => {
     const fetchChallans = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/challans/me");
+        const response = await axios.get("http://localhost:8000/challans/me");
         setChallans(response.data.data.challans);
       } catch (error) {
         console.error("Error fetching challans:", error);

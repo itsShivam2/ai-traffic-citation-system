@@ -6,7 +6,7 @@ export const signup = (userData, apiEndpoint) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      `http://localhost:5000/api/v1/auth/signup/${apiEndpoint}`,
+      `api/v1/auth/signup/${apiEndpoint}`,
       userData,
       { withCredentials: true }
     );
@@ -16,6 +16,7 @@ export const signup = (userData, apiEndpoint) => async (dispatch) => {
           isAuthenticated: true,
         })
       );
+      console.log("User created successfully:", response.data);
       dispatch(setLoading(false));
       return { success: true };
     }
@@ -30,7 +31,7 @@ export const login = (userData, apiEndpoint) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      `http://localhost:5000/api/v1/auth/login/${apiEndpoint}`,
+      `api/v1/auth/login/${apiEndpoint}`,
       userData,
       {
         withCredentials: true,
@@ -56,7 +57,7 @@ export const logout = () => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      "http://localhost:5000/api/auth/logout",
+      "api/v1/auth/logout",
       null,
       { withCredentials: true }
     );

@@ -180,7 +180,7 @@ function ChallanStatistics() {
     const fetchChallans = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/challans/get-all"
+          "http://localhost:8000/challans/get-all"
         );
         setChallans(response.data.data.challans);
       } catch (error) {

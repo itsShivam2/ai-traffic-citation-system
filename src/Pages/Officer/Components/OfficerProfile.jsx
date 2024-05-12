@@ -7,7 +7,7 @@ function OfficerProfile() {
     const fetchOfficerDetails = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5000/api/v1/officers/me", {
+          "http://localhost:8000/api/v1/officers/me", {
             withCredentials: true}
         );
         setOfficerDetails(response.data.officer);

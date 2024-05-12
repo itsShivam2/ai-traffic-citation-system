@@ -47,11 +47,15 @@ function AddChallan() {
     formPayload.append("imageFile", formData.imageFile);
 
     try {
-      const response = await axios.post("/challans", formPayload, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        "localhost:8000/challans",
+        formPayload,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (response.status === 201) {
         console.log("Challan added successfully:", response.data);

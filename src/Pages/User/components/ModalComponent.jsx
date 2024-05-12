@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ModalComponent = ({ closeModal }) => {
   const [formData, setFormData] = useState({
-    vehicleNumber: "",
+    licencePlate: "",
     vehicleType: "",
   });
 
@@ -12,17 +14,33 @@ const ModalComponent = ({ closeModal }) => {
       ...formData,
       [name]: value,
     });
+    console.log(formData);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    closeModal();
+
+    try {
+      const response = await axios.post("api/v1/vehicles", formData, {
+        withCredentials: true,
+      });
+      if (response.status === 201) {
+        console.log("Vehicle registered successfully:", response.data);
+        toast.success("Vehicle registered successfully!");
+        closeModal();
+      } else {
+        console.log("Failed to register vehicle", response.data);
+        toast.error("Failed to register vehicle. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Failed to register vehicle. Please try again.");
+    }
   };
 
   const handleCancel = () => {
     setFormData({
-      vehicleNumber: "",
+      licencePlate: "",
       vehicleType: "",
     });
     closeModal();
@@ -88,10 +106,10 @@ const ModalComponent = ({ closeModal }) => {
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                 >
                   <option value="">Please select</option>
-                  <option value="BS">2-Wheeler</option>
-                  <option value="CR">3-Wheeler</option>
-                  <option value="BK">4-Wheeler Light</option>
-                  <option value="TR">4-Wheeler Heavy</option>
+                  <option value="TWO_WHEELER">2-Wheeler</option>
+                  <option value="THREE_WHEELER">3-Wheeler</option>
+                  <option value="fOUR_WHEELER_LIGHT">4-Wheeler Light</option>
+                  <option value="fOUR_WHEELER_HEAVY">4-Wheeler Heavy</option>
                 </select>
               </label>
 

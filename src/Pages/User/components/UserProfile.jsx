@@ -62,13 +62,11 @@ function UserProfile() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/v1/users/me",
-          {
-            withCredentials: true,
-          }
-        );
+        const response = await axios.get("api/v1/users/me", {
+          withCredentials: true,
+        });
         setUserDetails(response.data.user);
+        console.log(response.data.user);
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
