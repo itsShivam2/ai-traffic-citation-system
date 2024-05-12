@@ -18,6 +18,7 @@ import About2 from "./IconsImages/About2.jpg";
 import About3 from "./IconsImages/About3.jpg";
 import About4 from "./IconsImages/About4.jpg";
 import Team from "./IconsImages/Team.jpg";
+import Vision from "./IconsImages/Vision.jpeg";
 import Background from "./IconsImages/Background.jpg";
 import HeroImage1 from "./IconsImages/HeroImag1.jpg";
 import HeroImage2 from "./IconsImages/HeroImag2.jpg";
@@ -43,6 +44,7 @@ export {
   About3,
   About4,
   Team,
+  Vision,
   Background,
   HeroImage1,
   HeroImage2,

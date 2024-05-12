@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import * as IconsAndImages from "../../../Assets/IconsAndImages";
 import ScrollReveal from "scrollreveal";
 function OurVision() {
@@ -64,8 +64,8 @@ function OurVision() {
                         type="video/mp4"
                       ></source>
                     </video> */}
-                     <img
-                      src={IconsAndImages.About2}
+                    <img
+                      src={IconsAndImages.Vision}
                       className="feature__img inline-flex items-center justify-center text-base font-bold text-white px-1 py-1 bg-gray-900 border-transparent relative z-10 leading-7 transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-600 focus:ring-offset-[#FFE942] origin-left rotate-2"
                     />
                   </div>

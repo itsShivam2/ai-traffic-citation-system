@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const dummyChallans = [
@@ -178,9 +179,7 @@ function ChallanStatistics() {
   useEffect(() => {
     const fetchChallans = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/challans/me"
-        );
+        const response = await axios.get("http://localhost:5000/challans/me");
         setChallans(response.data.data.challans);
       } catch (error) {
         console.error("Error fetching challans:", error);
@@ -320,15 +319,22 @@ function ChallanStatistics() {
                         </td>
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
-                            {challan.status === "PAID" ? (
-                              <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                View
-                              </button>
-                            ) : (
-                              <button className="text-gray-100 transition-colors duration-200 hover:text-teal-500 focus:outline-none">
-                                Pay
-                              </button>
-                            )}
+                            <Link
+                              to={{
+                                pathname: `/challan/${challan.id}`,
+                                state: { challan },
+                              }}
+                            >
+                              {challan.status === "PAID" ? (
+                                <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                                  View
+                                </button>
+                              ) : (
+                                <button className="text-gray-100 transition-colors duration-200 hover:text-teal-500 focus:outline-none">
+                                  Pay
+                                </button>
+                              )}
+                            </Link>
                           </div>
                         </td>
                       </tr>

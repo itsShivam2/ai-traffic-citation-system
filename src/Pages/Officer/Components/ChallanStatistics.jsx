@@ -342,15 +342,10 @@ function ChallanStatistics() {
                         </td>
                         <td className="px-4 py-4 text-sm whitespace-nowrap">
                           <div className="flex items-center gap-x-6">
-                            {challan.status === "PAID" ? (
-                              <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                View
-                              </button>
-                            ) : (
-                              <button className="text-gray-100 transition-colors duration-200 hover:text-teal-500 focus:outline-none">
-                                Pay
-                              </button>
-                            )}
+                            <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                              View
+                            </button>
+                            )
                           </div>
                         </td>
                       </tr>

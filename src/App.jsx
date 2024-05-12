@@ -9,6 +9,7 @@ import Officer from "./Pages/Officer/Officer";
 import User from "./Pages/User/User";
 import AddChallan from "./Pages/AddChallan/AddChallan";
 import AddVehicleForm from "./Pages/User/AddVehicleForm";
+import ChallanDetails from "./Pages/ChallanDetails/ChallanDetails";
 import { ToastContainer } from "react-toastify";
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
@@ -31,6 +32,7 @@ function App() {
         <Route path="user" element={<User />} />
         <Route path="/user/addvehicle" element={<AddVehicleForm />} />
 
+        <Route path="/challan/:id" component={ChallanDetails} />
         {/* {isAuthenticated && (
           <>
             <Route path="/officer" element={<Officer />} />
