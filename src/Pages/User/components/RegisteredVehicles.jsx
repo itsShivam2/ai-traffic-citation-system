@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 function RegisteredVehicles({ vehicles }) {
-  const [currentPage, setCurrentPage] = useState(vehicles);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(vehicles.length / itemsPerPage);
 
@@ -86,7 +86,10 @@ function RegisteredVehicles({ vehicles }) {
                     ))
                   ) : (
                     <tr>
-                      <td className="px-4 py-4 text-sm text-center font-medium whitespace-nowrap" colSpan="4">
+                      <td
+                        className="px-4 py-4 text-sm text-center font-medium whitespace-nowrap"
+                        colSpan="4"
+                      >
                         <p className="text-sm font-normal text-gray-100">
                           No Vehicle
                         </p>

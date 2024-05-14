@@ -48,16 +48,13 @@ function Navbar() {
     }
   };
 
-  console.log(userDetails);
-
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get("api/v1/users/me", {
+        const response = await axios.get("/api/v1/users/me", {
           withCredentials: true,
         });
         setUserDetails(response.data.user);
-        console.log(response.data.user);
       } catch (error) {
         console.error("Error fetching user details:", error);
       }

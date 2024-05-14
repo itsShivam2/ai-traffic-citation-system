@@ -24,12 +24,14 @@ const AddVehicle = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("api/v1/vehicles", formData, {
+      const response = await axios.post("/api/v1/vehicles", formData, {
         withCredentials: true,
       });
       if (response.status === 201) {
-        console.log("Vehicle registered successfully:", response.data);
         toast.success("Vehicle registered successfully!");
+        setTimeout(() => {
+          navigate("/user");
+        }, 1000);
       } else {
         console.log("Failed to register vehicle", response.data);
         toast.error("Failed to register vehicle. Please try again.");

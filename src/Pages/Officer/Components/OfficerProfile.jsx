@@ -4,7 +4,7 @@ import Spinner from "../../../Components/Spinner/Spinner";
 function OfficerProfile() {
   const [officerDetails, setOfficerDetails] = useState(null);
   const [Loading, setLoading] = useState(false);
-  
+
   useEffect(() => {
     const fetchOfficerDetails = async () => {
       try {
@@ -13,7 +13,6 @@ function OfficerProfile() {
           withCredentials: true,
         });
         if (response.status == 200) {
-          console.log(response.data.officer);
           setOfficerDetails(response.data.officer);
           setLoading(false);
         }

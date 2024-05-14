@@ -5,9 +5,7 @@ function AddVehicleButton({ openModal }) {
     <div>
       <div className="w-full flex justify-end items-center my-4">
         <Link to="/user/add-vehicle">
-          <button
-            className="w-full flex items-center justify-between px-6 py-3 text-sm font-[Fahkwang] tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
-          >
+          <button className="w-full flex items-center justify-between px-6 py-3 text-sm font-[Fahkwang] tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
             <span>Add Vehicle</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"

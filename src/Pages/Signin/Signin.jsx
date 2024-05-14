@@ -39,7 +39,7 @@ function Login() {
             } else {
               navigate("/user");
             }
-          }, 3000);
+          }, 1000);
         } else {
           toast.error("Signin failed. Please try again.");
         }

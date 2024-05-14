@@ -1,50 +1,55 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Layout from "../../Components/Layout/Layout";
-const challan = {
-  id: 1,
-  createdAt: "2022-05-10T08:00:00Z",
-  status: "NOT PAID",
-  vehicleLicensePlate: "UP-53 CZ-1234",
-  user: {
-    name: "User1",
-    email: "user1@example.com",
-    image:
-      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-  },
-};
+import Spinner from "../../Components/Spinner/Spinner";
 
-function ChallanDetails(props) {
-  // const location = useLocation();
-  // const challan = location.state.challan;
-  // console.log(challan);
-  // useEffect(() => {
-  //   const fetchChallanDetails = async () => {
-  //     try {
-  //       const response = await axios.get(
-  //         `http://localhost:5000/challans/${match.params.id}`
-  //       );
-  //       setChallan(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching challan details:", error);
-  //     }
-  //   };
+function ChallanDetails() {
+  const { challanId } = useParams();
+  console.log("challanId:", challanId);
+  const [challan, setChallan] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  //   fetchChallanDetails();
-  // }, [match.params.id]);
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const role = useSelector((state) => state.auth.role);
 
-  // if (!challan) {
-  //   return <div>Loading...</div>;
-  // }
+  useEffect(() => {
+    const fetchChallanDetails = async () => {
+      try {
+        setLoading(true);
+        const response = await axios.get(`/api/v1/challans/${challanId}`, {
+          withCredentials: true,
+        });
+        if (response.status === 200) {
+          console.log("Challan details:", response.data.challan);
+          setChallan(response.data.challan);
+        }
+        setLoading(false);
+      } catch (error) {
+        console.error("Error fetching challan details:", error);
+        setLoading(false);
+      }
+    };
 
-  // const challan = props.location.state?.challan;
+    fetchChallanDetails();
+  }, [challanId]);
 
-  // // Check if challan is not undefined before accessing its properties
-  // if (!challan) {
-  //   // Render appropriate content when challan is undefined
-  //   return <div>No challan data available.</div>;
-  // }
+  const handlePayClick = async () => {
+    try {
+      const response = await axios.patch(`/api/v1/challans/${challanId}`, {
+        withCredentials: true,
+      });
+      if (response.status === 200) {
+        setChallan((prevChallan) => ({
+          ...prevChallan,
+          status: "PAID",
+        }));
+      }
+    } catch (error) {
+      console.error("Error updating challan to paid:", error);
+    }
+  };
 
   return (
     <Layout>
@@ -52,51 +57,88 @@ function ChallanDetails(props) {
         <h2 className="text-3xl text-center text-gray-100 font-semibold font-[Fahkwang] mb-8">
           Challan Details
         </h2>
-        <section className="bg-[#111827] container px-4 pb-16 mx-auto">
-          <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow rounded-lg">
-            <div className="p-6">
-              <h3 className="text-lg font-semibold mb-4">
-                Challan Information
-              </h3>
-              <div className="flex flex-col md:flex-row">
-                <div className="md:w-1/2 md:pr-6">
-                  <p>
-                    <span className="font-semibold">Challan ID:</span>{" "}
-                    {challan.id}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Issued At:</span>{" "}
-                    {challan.issuedAt}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Violation:</span>{" "}
-                    {challan.violation}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Fine Amount:</span>{" "}
-                    {challan.fineAmount}
-                  </p>
-                </div>
-                <div className="md:w-1/2 md:pl-6">
-                  <p>
-                    <span className="font-semibold">Status:</span>{" "}
-                    {challan.status}
-                  </p>
-                  <p>
-                    <span className="font-semibold">
-                      Vehicle License Plate:
-                    </span>{" "}
-                    {challan.vehicleLicensePlate}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Officer ID:</span>{" "}
-                    {challan.officerId}
-                  </p>
+
+        {challan ? (
+          <section className="bg-[#111827] container px-4 pb-16 mx-auto">
+            <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow rounded-lg">
+              <div className="p-6">
+                <h3 className="text-xl font-[Fahkwang] font-bold mb-4">
+                  Challan Information
+                </h3>
+                <div className="flex flex-col md:flex-row">
+                  <div className="md:w-1/2 md:pr-6">
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Challan ID:
+                      </span>{" "}
+                      {challan.id}
+                    </p>
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Issued At:
+                      </span>{" "}
+                      {challan.issuedAt}
+                    </p>
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Violation:
+                      </span>{" "}
+                      {challan.violation}
+                    </p>
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Fine Amount:
+                      </span>{" "}
+                      {challan.fineAmount}
+                    </p>
+                  </div>
+                  <div className="md:w-1/2 md:pl-6">
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Status:
+                      </span>{" "}
+                      {challan.status}
+                    </p>
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Vehicle License Plate:
+                      </span>{" "}
+                      {challan.vehicleLicensePlate}
+                    </p>
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Officer ID:
+                      </span>{" "}
+                      {challan.officerId}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        ) : (
+          <section className="min-h-[200px] container px-4 pb-16 mx-auto">
+            <div className="flex items-center justify-center max-w-4xl mx-auto shadow rounded-lg">
+              <div className="p-6">
+                <Spinner />
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isAuthenticated &&
+          role === "user" &&
+          challan &&
+          challan.status !== "PAID" && (
+            <section className="w-full flex items-center justify-center pb-4">
+              <button
+                onClick={handlePayClick}
+                className="bg-blue-500 hover:bg-blue-700 text-lg text-white font-bold font-[Fahkwang] py-2 px-6 rounded"
+              >
+                Pay
+              </button>
+            </section>
+          )}
       </div>
     </Layout>
   );

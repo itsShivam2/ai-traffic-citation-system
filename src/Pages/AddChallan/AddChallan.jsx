@@ -10,7 +10,7 @@ function AddChallan() {
   const [formData, setFormData] = useState({
     violationDate: "",
     vehicleType: "",
-    violationType: "",
+    violation: "",
     imageFile: null,
   });
 
@@ -43,19 +43,15 @@ function AddChallan() {
     const formPayload = new FormData();
     formPayload.append("violationDate", formData.violationDate);
     formPayload.append("vehicleType", formData.vehicleType);
-    formPayload.append("violationType", formData.violationType);
+    formPayload.append("violation", formData.violation);
     formPayload.append("imageFile", formData.imageFile);
 
     try {
-      const response = await axios.post(
-        "localhost:8000/challans",
-        formPayload,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
+      const response = await axios.post("api/v1//challans", formPayload, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       if (response.status === 201) {
         console.log("Challan added successfully:", response.data);
@@ -64,13 +60,13 @@ function AddChallan() {
         setFormData({
           violationDate: "",
           vehicleType: "",
-          violationType: "",
+          violation: "",
           imageFile: null,
         });
 
         setTimeout(() => {
           Navigate("/officer");
-        }, 3000);
+        }, 2000);
       } else {
         console.error("Error adding challan:", response);
         toast.error("Failed to add challan. Please try again later.");
@@ -156,23 +152,23 @@ function AddChallan() {
             {/* Violation Type */}
             <div className="mb-6">
               <label
-                htmlFor="violationType"
+                htmlFor="violation"
                 className="block text-sm text-gray-100 dark:text-gray-200 font-[Fahkwang]"
               >
                 Violation Type
               </label>
 
               <select
-                id="violationType"
-                name="violationType"
-                value={formData.violationType}
+                id="violation"
+                name="violation"
+                value={formData.violation}
                 onChange={handleInputChange}
                 className="block w-full mt-2 px-5 py-2.5 rounded-lg border-[1px] border-gray-500 bg-white text-gray-700 font-[Montserrat] placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
               >
                 <option value="">Please select</option>
-                <option value="NH">No Helmet</option>
-                <option value="M2P">More than 2 people</option>
-                <option value="OS">Overspeed</option>
+                <option value="no licence">No Licence</option>
+                <option value="overspeeding">Overspeeding</option>
+                <option value="missing documents">Missing Documents</option>
               </select>
             </div>
 

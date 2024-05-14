@@ -58,7 +58,7 @@ function Signup() {
           toast.success("Signup successful");
           setTimeout(() => {
             navigate("/");
-          }, 3000);
+          }, 1000);
         } else {
           toast.error("Signup failed. Please try again.");
         }

@@ -68,9 +68,11 @@ function App() {
           }
         />
         <Route
-          path="/challan/:id"
+          path="/challans/:challanId"
           element={isAuthenticated ? <ChallanDetails /> : <Unauthorized />}
         />
+
+        <Route path="*" element={<Unauthorized />} />
       </Routes>
       <ToastContainer />
     </div>

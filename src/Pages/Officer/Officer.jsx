@@ -8,7 +8,7 @@ function Admin() {
     <Layout>
       <div className="bg-[#111827]">
         <OfficerProfile />
-        <Statistics />
+        {/* <Statistics /> */}
 
         <AddChallanButton />
 

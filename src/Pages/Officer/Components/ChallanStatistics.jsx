@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 const dummyChallans = [
@@ -181,12 +182,11 @@ function ChallanStatistics() {
     const fetchChallans = async () => {
       try {
         setLoading(true);
-        const response = await axios.get("api/v1/challans/officer/me", {
+        const response = await axios.get("/api/v1/challans/officer/me", {
           withCredentials: true,
         });
         if (response.status == 200) {
-          console.log(response.data.challans);
-          setChallans(response.data.data.challans);
+          setChallans(response.data.challans);
           setLoading(false);
         }
       } catch (error) {
@@ -238,21 +238,21 @@ function ChallanStatistics() {
                         scope="col"
                         className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
                       >
-                        Status
-                      </th>
-
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
-                      >
-                        User
-                      </th>
-
-                      <th
-                        scope="col"
-                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
-                      >
                         Vehicle No.
+                      </th>
+
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
+                      >
+                        Fine Amount
+                      </th>
+
+                      <th
+                        scope="col"
+                        className="px-4 py-3.5 text-sm font-normal text-left rtl:text-right text-gray-100"
+                      >
+                        Status
                       </th>
 
                       <th
@@ -277,29 +277,15 @@ function ChallanStatistics() {
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                            {challan.createdAt}
-                          </td>
-
-                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                            <div className="flex items-center gap-x-2">
-                              <img
-                                className="object-cover w-8 h-8 rounded-full"
-                                src={challan.user.image}
-                                alt=""
-                              />
-                              <div>
-                                <h2 className="text-sm font-medium text-white">
-                                  {challan.user.name}
-                                </h2>
-                                <p className="text-xs font-normal text-gray-100">
-                                  {challan.user.email}
-                                </p>
-                              </div>
-                            </div>
+                            {challan.issuedAt}
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
                             {challan.vehicleLicensePlate}
                           </td>
+                          <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
+                            {challan.fineAmount}
+                          </td>
+
                           <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
                             {challan.status === "PAID" ? (
                               <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
@@ -347,13 +333,16 @@ function ChallanStatistics() {
                               </div>
                             )}
                           </td>
+
                           <td className="px-4 py-4 text-sm whitespace-nowrap">
-                            <div className="flex items-center gap-x-6">
-                              <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                View
-                              </button>
-                              )
-                            </div>
+                            <Link to={`/challans/${challan.id}`}>
+                              <div className="flex items-center gap-x-6">
+                                <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                                  {challan.status === "PAID" ? "View" : "Pay"}
+                                </button>
+                                )
+                              </div>
+                            </Link>
                           </td>
                         </tr>
                       ))
@@ -364,7 +353,9 @@ function ChallanStatistics() {
                           colSpan="7"
                         >
                           <div className="inline-flex items-center gap-x-3">
-                            <span className="text-xl font-[Fahkwang]">No Challans found</span>
+                            <span className="text-xl font-[Fahkwang]">
+                              No Challans found
+                            </span>
                           </div>
                         </td>
                       </>
