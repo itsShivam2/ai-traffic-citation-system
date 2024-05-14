@@ -12,14 +12,16 @@ import User from "./Pages/User/User";
 import AddChallan from "./Pages/AddChallan/AddChallan";
 import AddVehicle from "./Pages/AddVehicle/AddVehicle";
 import ChallanDetails from "./Pages/ChallanDetails/ChallanDetails";
+import Unauthorized from "./Pages/Unauthorized/Unauthorized";
 import { ToastContainer } from "react-toastify";
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
-
+  const role = useSelector((state) => state.auth.role);
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="about" element={<About />} />
         <Route
           path="/signup"
           element={isAuthenticated ? <Navigate to="/" /> : <Signup />}
@@ -29,22 +31,46 @@ function App() {
           element={isAuthenticated ? <Navigate to="/" /> : <Signin />}
         />
 
-        <Route path="/officer" element={<Officer />} />
-        <Route path="/officer/addchallan" element={<AddChallan />} />
-        <Route path="user" element={<User />} />
-        <Route path="/user/add-vehicle" element={<AddVehicle />} />
-
-        <Route path="/challan/:id" element={<ChallanDetails />} />
-        {/* {isAuthenticated && (
-          <>
-            <Route path="/officer" element={<Officer />} />
-            <Route path="/officer/addchallan" element={<AddChallan />} />
-            <Route path="user" element={<User />} />
-            <Route path="/user/addvehicle" element={<AddVehicleForm />} />
-          </>
-        )} */}
-
-        <Route path="about" element={<About />} />
+        <Route
+          path="/officer"
+          element={
+            isAuthenticated && role === "officer" ? (
+              <Officer />
+            ) : (
+              <Unauthorized />
+            )
+          }
+        />
+        <Route
+          path="/officer/add-challan"
+          element={
+            isAuthenticated && role === "officer" ? (
+              <AddChallan />
+            ) : (
+              <Unauthorized />
+            )
+          }
+        />
+        <Route
+          path="/user"
+          element={
+            isAuthenticated && role === "user" ? <User /> : <Unauthorized />
+          }
+        />
+        <Route
+          path="/user/add-vehicle"
+          element={
+            isAuthenticated && role === "user" ? (
+              <AddVehicle />
+            ) : (
+              <Unauthorized />
+            )
+          }
+        />
+        <Route
+          path="/challan/:id"
+          element={isAuthenticated ? <ChallanDetails /> : <Unauthorized />}
+        />
       </Routes>
       <ToastContainer />
     </div>

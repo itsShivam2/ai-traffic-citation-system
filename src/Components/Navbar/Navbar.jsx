@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/userActions";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { FiLogIn } from "react-icons/fi";
 import { FaUserCircle } from "react-icons/fa";
 function Navbar() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [userDetails, setUserDetails] = useState(null);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isNavbarLinksOpen, setNavbarLinksOpen] = useState(false);
@@ -141,8 +142,12 @@ function Navbar() {
               <li>
                 <Link
                   to="/"
-                  className="block py-2 px-3 text-xl font-[Fahkwang] text-white bg-blue-700 rounded md:bg-transparent md:p-0 md:text-blue-500"
-                  aria-current="page"
+                  className={`block py-2 px-3 text-xl font-[Fahkwang] rounded md:p-0 ${
+                    location.pathname === "/"
+                      ? "text-blue-500"
+                      : "text-white hover:text-blue-500"
+                  }`}
+                  aria-current={location.pathname === "/" ? "page" : undefined}
                 >
                   Home
                 </Link>
@@ -150,7 +155,14 @@ function Navbar() {
               <li>
                 <Link
                   to="/about"
-                  className="block py-2 px-3 text-xl font-[Fahkwang] rounded md:p-0 text-white md:hover:text-blue-500 hover:bg-gray-700 hover:text-white md:hover:bg-transparent border-gray-700"
+                  className={`block py-2 px-3 text-xl font-[Fahkwang] rounded md:p-0 ${
+                    location.pathname === "/about"
+                      ? "text-blue-500"
+                      : "text-white hover:text-blue-500"
+                  }`}
+                  aria-current={
+                    location.pathname === "/about" ? "page" : undefined
+                  }
                 >
                   About
                 </Link>
@@ -186,7 +198,7 @@ function Navbar() {
               <>
                 <li>
                   <Link
-                    to="user"
+                    to="/user"
                     className="w-full block px-4 py-2 text-sm text-left font-[Fahkwang] hover:bg-gray-600 text-gray-200 hover:text-white"
                   >
                     Dashboard
