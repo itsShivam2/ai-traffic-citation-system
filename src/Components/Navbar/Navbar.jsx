@@ -53,7 +53,7 @@ function Navbar() {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get("api/v1/users/me", {
+        const response = await axios.get("/api/v1/users/me", {
           withCredentials: true,
         });
         setUserDetails(response.data.user);

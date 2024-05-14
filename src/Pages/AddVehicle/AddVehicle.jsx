@@ -24,9 +24,10 @@ const AddVehicle = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("api/v1/vehicles", formData, {
+      const response = await axios.post("/api/v1/vehicles", formData, {
         withCredentials: true,
       });
+      console.log(response);
       if (response.status === 201) {
         console.log("Vehicle registered successfully:", response.data);
         toast.success("Vehicle registered successfully!");
