@@ -38,13 +38,15 @@ export const login = (userData, apiEndpoint) => async (dispatch) => {
       }
     );
     if (response.status === 200) {
+      const { role } = response.data;
       dispatch(
         setUser({
           isAuthenticated: true,
+          role: role,
         })
       );
       dispatch(setLoading(false));
-      return { success: true };
+      return { success: true, role };
     }
   } catch (error) {
     dispatch(setError(error.response.data.message));
@@ -56,13 +58,12 @@ export const login = (userData, apiEndpoint) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await axios.post(
-      "api/v1/auth/logout",
-      null,
-      { withCredentials: true }
-    );
+    const response = await axios.delete("api/v1/auth/logout", {
+      withCredentials: true,
+    });
     if (response.status === 200) {
       dispatch(clearUser());
+      return { success: true };
     }
   } catch (error) {
     dispatch(setError(error.response.data.message));

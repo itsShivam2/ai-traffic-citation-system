@@ -100,7 +100,7 @@ function Signup() {
 
                   <div className="mt-3 md:flex md:items-center md:-mx-2">
                     <button
-                      className={`flex justify-center w-full px-6 py-3  rounded-lg md:w-auto md:mx-2 focus:outline-none ${
+                      className={`flex justify-center w-full px-6 py-3 rounded-lg md:w-auto md:mx-2 focus:outline-none ${
                         selectedTab === "officer"
                           ? "bg-blue-500 text-white"
                           : "text-blue-500"

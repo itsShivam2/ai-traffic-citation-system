@@ -1,16 +1,36 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux"; // Importing the useSelector hook
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../../redux/userActions";
-
+import axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { FiLogIn } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
 function Navbar() {
+  const navigate = useNavigate();
+  const [userDetails, setUserDetails] = useState(null);
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isNavbarLinksOpen, setNavbarLinksOpen] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logout());
+    dispatch(logout())
+      .then(({ success }) => {
+        if (success) {
+          toast.success("Logout successful");
+          setTimeout(() => {
+            navigate("/");
+          }, 1000);
+        } else {
+          toast.error("Logout failed. Please try again.");
+        }
+      })
+      .catch((error) => {
+        toast.error("Logout failed. Please try again.");
+        console.error("Logout error:", error);
+      });
   };
 
   const toggleUserDropdown = () => {
@@ -26,6 +46,24 @@ function Navbar() {
       setUserDropdownOpen(false);
     }
   };
+
+  console.log(userDetails);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get("api/v1/users/me", {
+          withCredentials: true,
+        });
+        setUserDetails(response.data.user);
+        console.log(response.data.user);
+      } catch (error) {
+        console.error("Error fetching user details:", error);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
 
   return (
     <>
@@ -47,7 +85,7 @@ function Navbar() {
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               type="button"
-              className="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-600"
+              className="flex items-center justify-center text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-600"
               id="user-menu-button"
               onClick={toggleUserDropdown}
               aria-expanded={isUserDropdownOpen ? "true" : "false"}
@@ -55,11 +93,16 @@ function Navbar() {
               data-dropdown-placement="bottom"
             >
               <span className="sr-only">Open user menu</span>
-              <img
+              {/* <img
                 className="w-8 h-8 rounded-full"
                 src="/docs/images/people/profile-picture-3.jpg"
                 alt="user photo"
-              />
+              /> */}
+              {isAuthenticated ? (
+                <FaUserCircle size={36} color="white" />
+              ) : (
+                <FiLogIn size={36} color="white" />
+              )}
             </button>
             {/* Dropdown menu */}
             <button
@@ -129,9 +172,11 @@ function Navbar() {
           <>
             {isAuthenticated && (
               <div className="px-4 py-3">
-                <span className="block text-sm text-white font-[Fahkwang]">User</span>
+                <span className="block text-sm text-white font-[Fahkwang]">
+                  {userDetails?.name}
+                </span>
                 <span className="block text-sm truncate text-gray-400 font-[Fahkwang]">
-                  name@user.com
+                  {userDetails?.email}
                 </span>
               </div>
             )}
@@ -142,7 +187,7 @@ function Navbar() {
                 <li>
                   <Link
                     to="user"
-                    className="block px-4 py-2 text-sm font-[Fahkwang] hover:bg-gray-600 text-gray-200 hover:text-white"
+                    className="w-full block px-4 py-2 text-sm text-left font-[Fahkwang] hover:bg-gray-600 text-gray-200 hover:text-white"
                   >
                     Dashboard
                   </Link>
@@ -150,7 +195,7 @@ function Navbar() {
                 <li>
                   <button
                     onClick={handleLogout}
-                    className="block px-4 py-2 text-sm font-[Fahkwang] hover:bg-gray-600 text-gray-200 hover:text-white"
+                    className="w-full block px-4 py-2 text-sm text-left font-[Fahkwang] hover:bg-gray-600 text-gray-200 hover:text-white"
                   >
                     Sign out
                   </button>

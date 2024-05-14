@@ -16,7 +16,6 @@ import { ToastContainer } from "react-toastify";
 function App() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-
   return (
     <div className="App">
       <Routes>
@@ -35,7 +34,7 @@ function App() {
         <Route path="user" element={<User />} />
         <Route path="/user/add-vehicle" element={<AddVehicle />} />
 
-        <Route path="/challan/:id" component={ChallanDetails} />
+        <Route path="/challan/:id" element={<ChallanDetails />} />
         {/* {isAuthenticated && (
           <>
             <Route path="/officer" element={<Officer />} />

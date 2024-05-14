@@ -1,8 +1,11 @@
 import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../../Components/Layout/Layout";
 const AddVehicle = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     licencePlate: "",
     vehicleType: "",
@@ -42,6 +45,7 @@ const AddVehicle = () => {
       licencePlate: "",
       vehicleType: "",
     });
+    navigate("/user");
   };
 
   return (
@@ -72,7 +76,7 @@ const AddVehicle = () => {
 
                 <form
                   className="mt-4 font-[Montserrat]"
-                  onClick={() => handleSubmit()}
+                  onSubmit={handleSubmit}
                 >
                   <label
                     htmlFor="licencePlate"

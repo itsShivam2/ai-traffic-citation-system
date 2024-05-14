@@ -1,4 +1,4 @@
-.spinner {
+/* .spinner {
    position: relative;
    width: 56px;
    height: 56px;
@@ -36,4 +36,27 @@
    to {
       transform: rotate(360deg);
    }
+} */
+
+/*  */
+.spinner {
+  --d: 31.7px;
+  width: 5.8px;
+  height: 5.8px;
+  border-radius: 50%;
+  color: #ffffff;
+  box-shadow: calc(1 * var(--d)) calc(0 * var(--d)) 0 0,
+    calc(0.707 * var(--d)) calc(0.707 * var(--d)) 0 1.4px,
+    calc(0 * var(--d)) calc(1 * var(--d)) 0 2.9px,
+    calc(-0.707 * var(--d)) calc(0.707 * var(--d)) 0 4.3px,
+    calc(-1 * var(--d)) calc(0 * var(--d)) 0 5.8px,
+    calc(-0.707 * var(--d)) calc(-0.707 * var(--d)) 0 7.2px,
+    calc(0 * var(--d)) calc(-1 * var(--d)) 0 8.6px;
+  animation: spinner-a90wxe 1s infinite steps(8);
+}
+
+@keyframes spinner-a90wxe {
+  100% {
+    transform: rotate(1turn);
+  }
 }

@@ -173,16 +173,22 @@ const dummyChallans = [
 ];
 
 function ChallanStatistics() {
-  const [challans, setChallans] = useState(dummyChallans);
+  const [challans, setChallans] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     const fetchChallans = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:8000/challans/get-all"
-        );
-        setChallans(response.data.data.challans);
+        setLoading(true);
+        const response = await axios.get("api/v1/challans/officer/me", {
+          withCredentials: true,
+        });
+        if (response.status == 200) {
+          console.log(response.data.challans);
+          setChallans(response.data.data.challans);
+          setLoading(false);
+        }
       } catch (error) {
         console.error("Error fetching challans:", error);
       }
@@ -192,13 +198,13 @@ function ChallanStatistics() {
   }, []);
 
   // Paginate
-  const totalPages = Math.ceil(dummyChallans.length / 5);
+  const totalPages = Math.ceil(challans.length / 5);
   const goToPage = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
   const startIndex = (currentPage - 1) * 5;
   const endIndex = startIndex + 5;
-  const paginatedChallans = dummyChallans.slice(startIndex, endIndex);
+  const paginatedChallans = challans.slice(startIndex, endIndex);
 
   return (
     <div>
@@ -262,94 +268,107 @@ function ChallanStatistics() {
                     </tr>
                   </thead>
                   <tbody className="bg-[#111827] divide-y divide-gray-200 font-[Montserrat]">
-                    {paginatedChallans.map((challan) => (
-                      <tr key={challan.id}>
-                        <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
+                    {challans.length > 0 ? (
+                      paginatedChallans.map((challan) => (
+                        <tr key={challan.id}>
+                          <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
+                            <div className="inline-flex items-center gap-x-3">
+                              <span>#{challan.id}</span>
+                            </div>
+                          </td>
+                          <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
+                            {challan.createdAt}
+                          </td>
+
+                          <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
+                            <div className="flex items-center gap-x-2">
+                              <img
+                                className="object-cover w-8 h-8 rounded-full"
+                                src={challan.user.image}
+                                alt=""
+                              />
+                              <div>
+                                <h2 className="text-sm font-medium text-white">
+                                  {challan.user.name}
+                                </h2>
+                                <p className="text-xs font-normal text-gray-100">
+                                  {challan.user.email}
+                                </p>
+                              </div>
+                            </div>
+                          </td>
+                          <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
+                            {challan.vehicleLicensePlate}
+                          </td>
+                          <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
+                            {challan.status === "PAID" ? (
+                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
+                                <svg
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 12 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M10 3L4.5 8.5L2 6"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+
+                                <h2 className="text-sm font-normal">
+                                  {challan.status}
+                                </h2>
+                              </div>
+                            ) : (
+                              <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-white">
+                                <svg
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 12 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M9 3L3 9M3 3L9 9"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+
+                                <h2 className="text-sm font-normal">
+                                  {challan.status}
+                                </h2>
+                              </div>
+                            )}
+                          </td>
+                          <td className="px-4 py-4 text-sm whitespace-nowrap">
+                            <div className="flex items-center gap-x-6">
+                              <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                                View
+                              </button>
+                              )
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <>
+                        <td
+                          className="px-4 py-4 text-sm text-center font-medium text-gray-100 whitespace-nowrap"
+                          colSpan="7"
+                        >
                           <div className="inline-flex items-center gap-x-3">
-                            <span>#{challan.id}</span>
+                            <span className="text-xl font-[Fahkwang]">No Challans found</span>
                           </div>
                         </td>
-                        <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                          {challan.createdAt}
-                        </td>
-
-                        <td className="px-4 py-4 text-sm text-gray-500 dark:text-gray-300 whitespace-nowrap">
-                          <div className="flex items-center gap-x-2">
-                            <img
-                              className="object-cover w-8 h-8 rounded-full"
-                              src={challan.user.image}
-                              alt=""
-                            />
-                            <div>
-                              <h2 className="text-sm font-medium text-white">
-                                {challan.user.name}
-                              </h2>
-                              <p className="text-xs font-normal text-gray-100">
-                                {challan.user.email}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                          {challan.vehicleLicensePlate}
-                        </td>
-                        <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
-                          {challan.status === "PAID" ? (
-                            <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
-                              <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M10 3L4.5 8.5L2 6"
-                                  stroke="currentColor"
-                                  strokeWidth="1.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-
-                              <h2 className="text-sm font-normal">
-                                {challan.status}
-                              </h2>
-                            </div>
-                          ) : (
-                            <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-white">
-                              <svg
-                                width="12"
-                                height="12"
-                                viewBox="0 0 12 12"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M9 3L3 9M3 3L9 9"
-                                  stroke="currentColor"
-                                  strokeWidth="1.5"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                />
-                              </svg>
-
-                              <h2 className="text-sm font-normal">
-                                {challan.status}
-                              </h2>
-                            </div>
-                          )}
-                        </td>
-                        <td className="px-4 py-4 text-sm whitespace-nowrap">
-                          <div className="flex items-center gap-x-6">
-                            <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                              View
-                            </button>
-                            )
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
+                      </>
+                    )}
                   </tbody>
                 </table>
               </div>

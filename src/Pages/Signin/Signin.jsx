@@ -30,11 +30,15 @@ function Login() {
     e.preventDefault();
     const apiEndpoint = selectedTab === "officer" ? "officer" : "user";
     dispatch(login(formData, apiEndpoint))
-      .then(({ success }) => {
+      .then(({ success, role }) => {
         if (success) {
           toast.success("Signin successful");
           setTimeout(() => {
-            navigate("/");
+            if (role === "officer") {
+              navigate("/officer");
+            } else {
+              navigate("/user");
+            }
           }, 3000);
         } else {
           toast.error("Signin failed. Please try again.");
