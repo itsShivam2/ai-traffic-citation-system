@@ -122,10 +122,8 @@ const AddVehicle = () => {
                       <option value="">Please select</option>
                       <option value="TWO_WHEELER">2-Wheeler</option>
                       <option value="THREE_WHEELER">3-Wheeler</option>
-                      <option value="fOUR_WHEELER_LIGHT">
-                        4-Wheeler Light
-                      </option>
-                      <option value="fOUR_WHEELER_HEAVY">
+                      <option value="FOUR_WHEELER">4-Wheeler Light</option>
+                      <option value="FOUR_WHEELER_HEAVY">
                         4-Wheeler Heavy
                       </option>
                     </select>

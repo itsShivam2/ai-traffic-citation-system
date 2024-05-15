@@ -8,7 +8,6 @@ import axios from "axios";
 
 function AddChallan() {
   const [formData, setFormData] = useState({
-    violationDate: "",
     vehicleType: "",
     violation: "",
     imageFile: null,
@@ -41,13 +40,12 @@ function AddChallan() {
     setSpinnerVisible(true);
 
     const formPayload = new FormData();
-    formPayload.append("violationDate", formData.violationDate);
     formPayload.append("vehicleType", formData.vehicleType);
     formPayload.append("violation", formData.violation);
     formPayload.append("imageFile", formData.imageFile);
 
     try {
-      const response = await axios.post("api/v1//challans", formPayload, {
+      const response = await axios.post("/api/v1/challans", formPayload, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -58,7 +56,6 @@ function AddChallan() {
         toast.success("Challan added successfully!");
 
         setFormData({
-          violationDate: "",
           vehicleType: "",
           violation: "",
           imageFile: null,
@@ -106,25 +103,6 @@ function AddChallan() {
             Add Challan
           </h1>
           <form onSubmit={handleSubmit}>
-            {/* Violation Date */}
-            <div className="mb-6">
-              <label
-                htmlFor="violationDate"
-                className="block text-sm text-gray-100 dark:text-gray-200 font-[Fahkwang]"
-              >
-                Violation Date
-              </label>
-
-              <input
-                type="date"
-                id="violationDate"
-                name="violationDate"
-                value={formData.violationDate}
-                onChange={handleInputChange}
-                className="block w-full mt-2 px-5 py-2.5 rounded-lg border border-gray-500 bg-white text-gray-700 font-[Montserrat] placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
-              />
-            </div>
-
             {/* Vehicle Type */}
             <div className="mb-6">
               <label
@@ -137,15 +115,16 @@ function AddChallan() {
               <select
                 id="vehicleType"
                 name="vehicleType"
+                required
                 value={formData.vehicleType}
                 onChange={handleInputChange}
                 className="block w-full mt-2 px-5 py-2.5 rounded-lg border-[1px] border-gray-500 bg-white text-gray-700 font-[Montserrat] placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
               >
                 <option value="">Please select</option>
-                <option value="2W">2-Wheeler</option>
-                <option value="3W">3-Wheeler</option>
-                <option value="4WL">4-Wheeler Light</option>
-                <option value="4WH">4-Wheeler Heavy</option>
+                <option value="TWO_WHEELER">2-Wheeler</option>
+                <option value="THREE_WHEELER">3-Wheeler</option>
+                <option value="FOUR_WHEELER">4-Wheeler Light</option>
+                <option value="FOUR_WHEELER_HEAVY">4-Wheeler Heavy</option>
               </select>
             </div>
 
@@ -161,6 +140,7 @@ function AddChallan() {
               <select
                 id="violation"
                 name="violation"
+                required
                 value={formData.violation}
                 onChange={handleInputChange}
                 className="block w-full mt-2 px-5 py-2.5 rounded-lg border-[1px] border-gray-500 bg-white text-gray-700 font-[Montserrat] placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-100 dark:bg-gray-900 dark:text-gray-300 dark:focus:border-blue-300"
@@ -185,6 +165,7 @@ function AddChallan() {
                 type="file"
                 id="image"
                 name="imageFile"
+                required
                 onChange={handleFileChange}
                 className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-500 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-100 dark:bg-gray-900 dark:focus:border-blue-300"
               />

@@ -35,14 +35,41 @@ function Signup() {
     });
   };
 
+  const [errors, setErrors] = useState({});
+
+  const validate = () => {
+    const newErrors = {};
+
+    if (selectedTab === "officer") {
+      if (!formData.officerId) {
+        newErrors.officerId = "Officer ID is required";
+      } else if (formData.officerId.length !== 10) {
+        newErrors.officerId = "ID must be 10 characters long";
+      }
+    }
+
+    if (selectedTab === "user") {
+      if (!formData.uid) {
+        newErrors.uid = "User ID is required";
+      } else if (formData.uid.length !== 12) {
+        newErrors.uid = "ID must be 12 characters long";
+      }
+    }
+
+    if (formData.password !== formData.confirmPassword) {
+      newErrors.confirmPassword = "Passwords do not match";
+    }
+
+    setErrors(newErrors);
+
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    if (formData.password !== formData.confirmPassword) {
-      setFormData({
-        ...formData,
-        error: "Passwords do not match",
-      });
+
+    if (!validate()) {
       setLoading(false);
       return;
     }
@@ -169,6 +196,7 @@ function Signup() {
                     <input
                       type="text"
                       name="firstName"
+                      required
                       value={formData.firstName}
                       onChange={handleChange}
                       placeholder="John"
@@ -183,6 +211,7 @@ function Signup() {
                     <input
                       type="text"
                       name="lastName"
+                      required
                       value={formData.lastName}
                       onChange={handleChange}
                       placeholder="Doe"
@@ -193,9 +222,20 @@ function Signup() {
                   <div>
                     <label className="block mb-2 text-sm text-gray-100 dark:text-gray-200">
                       {selectedTab === "officer" ? "Officer ID" : "Virtual ID"}
+                      {errors.officerId && (
+                        <span className="ml-2 text-red-500 text-xs">
+                          {errors.officerId}
+                        </span>
+                      )}
+                      {errors.uid && (
+                        <span className="ml-2 text-red-500 text-xs">
+                          {errors.uid}
+                        </span>
+                      )}
                     </label>
                     <input
                       type="text"
+                      required
                       name={selectedTab === "officer" ? "officerId" : "uid"}
                       value={
                         selectedTab === "officer"
@@ -204,7 +244,7 @@ function Signup() {
                       }
                       onChange={handleChange}
                       placeholder={
-                        selectedTab === "officer" ? "1234567890" : "XXX-XX-XXXX"
+                        selectedTab === "officer" ? "1234567890" : "XXXXXXXXX"
                       }
                       className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-100 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
@@ -217,6 +257,7 @@ function Signup() {
                     <input
                       type="email"
                       name="email"
+                      required
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="johndoe@example.com"
@@ -231,6 +272,7 @@ function Signup() {
                     <input
                       type="password"
                       name="password"
+                      required
                       value={formData.password}
                       onChange={handleChange}
                       placeholder="Enter your password"
@@ -241,10 +283,16 @@ function Signup() {
                   <div>
                     <label className="block mb-2 text-sm text-gray-100 dark:text-gray-200">
                       Confirm password
+                      {errors.confirmPassword && (
+                        <span className="ml-2 text-red-500 text-xs">
+                          {errors.confirmPassword}
+                        </span>
+                      )}
                     </label>
                     <input
                       type="password"
                       name="confirmPassword"
+                      required
                       value={formData.confirmPassword}
                       onChange={handleChange}
                       placeholder="Confirm your password"

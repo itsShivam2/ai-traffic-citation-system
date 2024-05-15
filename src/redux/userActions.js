@@ -6,7 +6,7 @@ export const signup = (userData, apiEndpoint) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      `api/v1/auth/signup/${apiEndpoint}`,
+      `/api/v1/auth/signup/${apiEndpoint}`,
       userData,
       { withCredentials: true }
     );
@@ -33,7 +33,7 @@ export const login = (userData, apiEndpoint) => async (dispatch) => {
   try {
     dispatch(setLoading(true));
     const response = await axios.post(
-      `api/v1/auth/login/${apiEndpoint}`,
+      `/api/v1/auth/login/${apiEndpoint}`,
       userData,
       {
         withCredentials: true,
@@ -60,7 +60,7 @@ export const login = (userData, apiEndpoint) => async (dispatch) => {
 export const logout = () => async (dispatch) => {
   try {
     dispatch(setLoading(true));
-    const response = await axios.delete("api/v1/auth/logout", {
+    const response = await axios.delete("/api/v1/auth/logout", {
       withCredentials: true,
     });
     if (response.status === 200) {
