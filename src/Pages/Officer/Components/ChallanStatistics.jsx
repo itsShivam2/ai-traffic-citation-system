@@ -2,177 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-const dummyChallans = [
-  {
-    id: 1,
-    createdAt: "2022-05-10T08:00:00Z",
-    status: "NOT PAID",
-    vehicleLicensePlate: "UP-53 CZ-1234",
-    user: {
-      name: "User1",
-      email: "user1@example.com",
-      image:
-        "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80",
-    },
-  },
-  {
-    id: 2,
-    createdAt: "2022-05-09T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "DL-13 QW-5678",
-    user: {
-      name: "User2",
-      email: "user2@example.com",
-      image:
-        "https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-    },
-  },
-  {
-    id: 3,
-    createdAt: "2022-05-08T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "MH-02 AB-9876",
-    user: {
-      name: "User3",
-      email: "user3@example.com",
-      image:
-        "https://images.unsplash.com/photo-1557682228-3afac29bf4c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 4,
-    createdAt: "2022-05-07T08:00:00Z",
-    status: "NOT PAID",
-    vehicleLicensePlate: "KA-09 XY-3456",
-    user: {
-      name: "User4",
-      email: "user4@example.com",
-      image:
-        "https://images.unsplash.com/photo-1546520345-7ec3b62f7693?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 5,
-    createdAt: "2022-05-06T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "TN-14 KL-6789",
-    user: {
-      name: "User5",
-      email: "user5@example.com",
-      image:
-        "https://images.unsplash.com/photo-1520229656092-76c11a6a0e81?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 6,
-    createdAt: "2022-05-05T08:00:00Z",
-    status: "NOT PAID",
-    vehicleLicensePlate: "MH-03 PQ-4567",
-    user: {
-      name: "User6",
-      email: "user6@example.com",
-      image:
-        "https://images.unsplash.com/photo-1566817410163-60d0d0a3b279?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 7,
-    createdAt: "2022-05-04T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "UP-32 RS-8901",
-    user: {
-      name: "User7",
-      email: "user7@example.com",
-      image:
-        "https://images.unsplash.com/photo-1512626120411-e80f47f3f4e1?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 8,
-    createdAt: "2022-05-03T08:00:00Z",
-    status: "NOT PAID",
-    vehicleLicensePlate: "DL-14 MN-2345",
-    user: {
-      name: "User8",
-      email: "user8@example.com",
-      image:
-        "https://images.unsplash.com/photo-1546054167-6178017b6716?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 9,
-    createdAt: "2022-05-02T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "MH-04 ST-7890",
-    user: {
-      name: "User9",
-      email: "user9@example.com",
-      image:
-        "https://images.unsplash.com/photo-1543868163-a3d58c063cd0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 10,
-    createdAt: "2022-05-01T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "GJ-01 OP-1234",
-    user: {
-      name: "User10",
-      email: "user10@example.com",
-      image:
-        "https://images.unsplash.com/photo-1520229656092-76c11a6a0e81?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 11,
-    createdAt: "2022-04-30T08:00:00Z",
-    status: "NOT PAID",
-    vehicleLicensePlate: "RJ-07 UV-5678",
-    user: {
-      name: "User11",
-      email: "user11@example.com",
-      image:
-        "https://images.unsplash.com/photo-1582042983342-6c6f66d91b9b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 12,
-    createdAt: "2022-04-29T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "KA-08 WX-8901",
-    user: {
-      name: "User12",
-      email: "user12@example.com",
-      image:
-        "https://images.unsplash.com/photo-1593717093216-2b1f47eb1a92?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 13,
-    createdAt: "2022-04-28T08:00:00Z",
-    status: "NOT PAID",
-    vehicleLicensePlate: "UP-45 YZ-6789",
-    user: {
-      name: "User13",
-      email: "user13@example.com",
-      image:
-        "https://images.unsplash.com/photo-1532594909817-3d95b64ea32c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-  {
-    id: 14,
-    createdAt: "2022-04-27T08:00:00Z",
-    status: "PAID",
-    vehicleLicensePlate: "DL-15 AB-2345",
-    user: {
-      name: "User14",
-      email: "user14@example.com",
-      image:
-        "https://images.unsplash.com/photo-1533174072545-243863d80ede?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
-    },
-  },
-];
-
 function ChallanStatistics() {
   const [challans, setChallans] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -268,7 +97,16 @@ function ChallanStatistics() {
                     </tr>
                   </thead>
                   <tbody className="bg-[#111827] divide-y divide-gray-200 font-[Montserrat]">
-                    {challans.length > 0 ? (
+                    {loading ? (
+                      <td
+                        className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap"
+                        colSpan="6"
+                      >
+                        <div className="w-full inline-flex items-center justify-center gap-x-3">
+                          <Spinner />
+                        </div>
+                      </td>
+                    ) : challans.length > 0 ? (
                       paginatedChallans.map((challan) => (
                         <tr key={challan.id}>
                           <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
@@ -347,7 +185,7 @@ function ChallanStatistics() {
                         </tr>
                       ))
                     ) : (
-                      <>
+                      <tr>
                         <td
                           className="px-4 py-4 text-sm text-center font-medium text-gray-100 whitespace-nowrap"
                           colSpan="7"
@@ -358,7 +196,7 @@ function ChallanStatistics() {
                             </span>
                           </div>
                         </td>
-                      </>
+                      </tr>
                     )}
                   </tbody>
                 </table>

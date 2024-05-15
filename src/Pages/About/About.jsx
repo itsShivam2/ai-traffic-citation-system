@@ -23,17 +23,17 @@ function About() {
     <div>
       <Layout>
         <div className="bg-[#111827]">
-          <h1 className="text-[4rem] sm:text-[8rem] text-white font-[Fahkwang] text-left md:text-center px-8 pt-8 reveal-element">
+          <h1 className="text-[4rem] sm:text-[6rem] text-white font-[Fahkwang] text-left md:text-center px-8 pt-8 reveal-element">
             About Us
           </h1>
           <hr className="border-t border-gray-100 mb-6 mx-8" />
 
           <div
             className="w-full bg-center bg-cover h-[38rem] reveal-element"
-            style={{
-              backgroundImage:
-                "url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80')",
-            }}
+            // style={{
+            //   backgroundImage:
+            //     "url('https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80')",
+            // }}
           >
             <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
               <div className="flex flex-col items-center text-center">

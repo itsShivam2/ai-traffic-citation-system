@@ -5,9 +5,11 @@ import { useDispatch } from "react-redux";
 import { signup } from "../../redux/userActions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../Components/Loader/Loader";
 function Signup() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [selectedTab, setSelectedTab] = useState("officer");
 
   const [formData, setFormData] = useState({
@@ -35,12 +37,13 @@ function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     if (formData.password !== formData.confirmPassword) {
       setFormData({
         ...formData,
         error: "Passwords do not match",
       });
+      setLoading(false);
       return;
     }
 
@@ -53,17 +56,19 @@ function Signup() {
     const apiEndpoint = selectedTab === "officer" ? "officer" : "user";
 
     dispatch(signup(combinedFormData, apiEndpoint))
-      .then(({ success }) => {
+      .then(({ success, role }) => {
+        setLoading(false);
         if (success) {
           toast.success("Signup successful");
           setTimeout(() => {
-            navigate("/");
+            navigate(`/${role}`);
           }, 1000);
         } else {
           toast.error("Signup failed. Please try again.");
         }
       })
       .catch((error) => {
+        setLoading(false);
         toast.error("Signup failed. Please try again.");
         console.error("Signup error:", error);
       });
@@ -249,7 +254,7 @@ function Signup() {
 
                   <div className="flex flex-col items-center gap-4 md:flex-row md:col-span-2">
                     <button className="w-full md:w-1/2 flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
-                      <span>Sign Up </span>
+                      {loading ? <Loader /> : <span>Sign Up </span>}
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

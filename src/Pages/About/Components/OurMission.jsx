@@ -1,9 +1,7 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import * as IconsAndImages from "../../../Assets/IconsAndImages";
 import ScrollReveal from "scrollreveal";
 function OurMission() {
-
-
   useEffect(() => {
     ScrollReveal().reveal(".reveal-element", {
       origin: "bottom",
@@ -35,10 +33,10 @@ function OurMission() {
                         type="video/mp4"
                       ></source>
                     </video> */}
-                    <img
+                    {/* <img
                       src={IconsAndImages.About2}
                       className="feature__img inline-flex items-center justify-center text-base font-bold text-white px-1 py-1 bg-gray-900 border-transparent relative z-10 leading-7 transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-600 focus:ring-offset-[#FFE942] origin-left rotate-2"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>
@@ -58,20 +56,17 @@ function OurMission() {
                   its impact on road safety and regulation.
                 </p>
               </div>
-              <div className="relative w-fit mt-8 sm:mt-12">
+              {/* <div className="relative w-fit mt-8 sm:mt-12">
                 <div className="absolute -inset-5">
                   <div className="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg filter bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
                 </div>
-                <a
-                  href="#"
+                <button
                   className="relative z-10 inline-flex items-center justify-center w-full px-8 py-3 text-lg font-bold text-white transition-all duration-200 bg-gray-900 border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                   role="button"
-                  target="_blank"
-                  rel="noreferrer"
                 >
                   Know More
-                </a>
-              </div>
+                </button>
+              </div> */}
             </div>
           </div>
         </div>

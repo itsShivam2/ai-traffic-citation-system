@@ -27,7 +27,6 @@ function ChallanStatistics() {
     fetchChallans();
   }, []);
 
-  // Paginate
   const totalPages = Math.ceil(challans.length / 5);
   const goToPage = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -46,7 +45,7 @@ function ChallanStatistics() {
           <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden border border-gray-200 dark:border-gray-700 md:rounded-lg">
-                <table className="min-h-[360px] min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                   <thead className="bg-[#263658] text-gray-100 font-[Fahkwang]">
                     <tr>
                       <th
@@ -103,103 +102,98 @@ function ChallanStatistics() {
                           <Spinner />
                         </div>
                       </td>
-                    ) : (
-                      <>
-                        {" "}
-                        {challans.length > 0 ? (
-                          paginatedChallans.map((challan) => (
-                            <tr key={challan.id}>
-                              <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
-                                <div className="inline-flex items-center gap-x-3">
-                                  <span>#{challan.id}</span>
-                                </div>
-                              </td>
-                              <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                                {challan.issuedAt}
-                              </td>
+                    ) : challans.length > 0 ? (
+                      paginatedChallans.map((challan) => (
+                        <tr key={challan.id}>
+                          <td className="px-4 py-4 text-sm font-medium text-gray-100  whitespace-nowrap">
+                            <div className="inline-flex items-center gap-x-3">
+                              <span>#{challan.id}</span>
+                            </div>
+                          </td>
+                          <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
+                            {challan.issuedAt}
+                          </td>
 
-                              <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                                {challan.vehicleLicensePlate}
-                              </td>
-                              <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
-                                {challan.status === "PAID" ? (
-                                  <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 12 12"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M10 3L4.5 8.5L2 6"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      />
-                                    </svg>
+                          <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
+                            {challan.vehicleLicensePlate}
+                          </td>
+                          <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
+                            {challan.status === "PAID" ? (
+                              <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
+                                <svg
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 12 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M10 3L4.5 8.5L2 6"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
 
-                                    <h2 className="text-sm font-normal">
-                                      {challan.status}
-                                    </h2>
-                                  </div>
-                                ) : (
-                                  <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-white">
-                                    <svg
-                                      width="12"
-                                      height="12"
-                                      viewBox="0 0 12 12"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                        d="M9 3L3 9M3 3L9 9"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                      />
-                                    </svg>
-
-                                    <h2 className="text-sm font-normal">
-                                      {challan.status}
-                                    </h2>
-                                  </div>
-                                )}
-                              </td>
-                              <td className="px-4 py-4 text-sm whitespace-nowrap">
-                                <div className="flex items-center gap-x-6">
-                                  <Link to={`/challans/${challan.id}`}>
-                                    {challan.status === "PAID" ? (
-                                      <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
-                                        View
-                                      </button>
-                                    ) : (
-                                      <button className="text-gray-100 transition-colors duration-200 hover:text-teal-500 focus:outline-none">
-                                        Pay
-                                      </button>
-                                    )}
-                                  </Link>
-                                </div>
-                              </td>
-                            </tr>
-                          ))
-                        ) : (
-                          <>
-                            <td
-                              className="px-4 py-4 text-sm text-center font-medium text-gray-100 whitespace-nowrap"
-                              colSpan="7"
-                            >
-                              <div className="inline-flex items-center gap-x-3">
-                                <span className="text-xl font-[Fahkwang]">
-                                  No Challans found
-                                </span>
+                                <h2 className="text-sm font-normal">
+                                  {challan.status}
+                                </h2>
                               </div>
-                            </td>
-                          </>
-                        )}
-                      </>
+                            ) : (
+                              <div className="inline-flex items-center px-3 py-1 text-red-500 rounded-full gap-x-2 bg-white">
+                                <svg
+                                  width="12"
+                                  height="12"
+                                  viewBox="0 0 12 12"
+                                  fill="none"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path
+                                    d="M9 3L3 9M3 3L9 9"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+
+                                <h2 className="text-sm font-normal">
+                                  {challan.status}
+                                </h2>
+                              </div>
+                            )}
+                          </td>
+                          <td className="px-4 py-4 text-sm whitespace-nowrap">
+                            <div className="flex items-center gap-x-6">
+                              <Link to={`/challans/${challan.id}`}>
+                                {challan.status === "PAID" ? (
+                                  <button className="text-gray-100 transition-colors duration-200 dark:hover:text-indigo-500 dark:text-gray-300 hover:text-indigo-500 focus:outline-none">
+                                    View
+                                  </button>
+                                ) : (
+                                  <button className="text-gray-100 transition-colors duration-200 hover:text-teal-500 focus:outline-none">
+                                    Pay
+                                  </button>
+                                )}
+                              </Link>
+                            </div>
+                          </td>
+                        </tr>
+                      ))
+                    ) : (
+                      <tr>
+                        <td
+                          className="px-4 py-4 text-sm text-center font-medium text-gray-100 whitespace-nowrap"
+                          colSpan="7"
+                        >
+                          <div className="inline-flex items-center gap-x-3">
+                            <span className="text-xl font-[Fahkwang]">
+                              No Challans found
+                            </span>
+                          </div>
+                        </td>
+                      </tr>
                     )}
                   </tbody>
                 </table>

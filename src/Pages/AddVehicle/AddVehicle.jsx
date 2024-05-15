@@ -4,8 +4,10 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Layout from "../../Components/Layout/Layout";
+import Loader from "../../Components/Loader/Loader";
 const AddVehicle = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     licencePlate: "",
     vehicleType: "",
@@ -24,19 +26,22 @@ const AddVehicle = () => {
     e.preventDefault();
 
     try {
+      setLoading(true);
       const response = await axios.post("/api/v1/vehicles", formData, {
         withCredentials: true,
       });
       if (response.status === 201) {
+        setLoading(false);
         toast.success("Vehicle registered successfully!");
         setTimeout(() => {
           navigate("/user");
         }, 1000);
       } else {
-        console.log("Failed to register vehicle", response.data);
+        setLoading(false);
         toast.error("Failed to register vehicle. Please try again.");
       }
     } catch (error) {
+      setLoading(false);
       console.error("Error submitting form:", error);
       toast.error("Failed to register vehicle. Please try again.");
     }
@@ -52,7 +57,7 @@ const AddVehicle = () => {
 
   return (
     <Layout>
-      <div className="bg-[#000814] min-h-fit w-full flex items-center justify-center">
+      <div className="bg-[#111827] min-h-fit w-full flex items-center justify-center">
         <div className="relative flex justify-center">
           <div
             className="inset-0 z-10 overflow-y-auto"
@@ -68,7 +73,7 @@ const AddVehicle = () => {
                 &#8203;
               </span>
 
-              <div className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-600 sm:my-8 sm:w-full sm:max-w-sm sm:p-6 sm:align-middle">
+              <div className="relative inline-block px-4 pt-5 pb-4 overflow-hidden text-left align-bottom transition-all transform bg-white rounded-lg shadow-xl dark:bg-gray-600 sm:my-8 sm:w-full sm:max-w-sm sm:p-8 sm:align-middle">
                 <h3
                   className="text-lg text-center font-medium font-[Fahkwang] leading-6 text-gray-800 capitalize dark:text-white"
                   id="modal-title"
@@ -139,7 +144,7 @@ const AddVehicle = () => {
                       type="submit"
                       className="w-full px-4 py-2 mt-3 text-sm font-medium font-[Fahkwang] tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md sm:mt-0 sm:w-1/2 sm:mx-2 hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40"
                     >
-                      Confirm
+                      {loading ? <span>Adding...</span> : <span>Confirm</span>}
                     </button>
                   </div>
                 </form>

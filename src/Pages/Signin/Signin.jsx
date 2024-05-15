@@ -5,9 +5,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../redux/userActions";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loader from "../../Components/Loader/Loader";
 function Login() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
   const [selectedTab, setSelectedTab] = useState("officer");
   const [formData, setFormData] = useState({
     email: "",
@@ -28,23 +30,22 @@ function Login() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const apiEndpoint = selectedTab === "officer" ? "officer" : "user";
     dispatch(login(formData, apiEndpoint))
       .then(({ success, role }) => {
+        setLoading(false);
         if (success) {
           toast.success("Signin successful");
           setTimeout(() => {
-            if (role === "officer") {
-              navigate("/officer");
-            } else {
-              navigate("/user");
-            }
+            navigate(`/${role}`);
           }, 1000);
         } else {
           toast.error("Signin failed. Please try again.");
         }
       })
       .catch((error) => {
+        setLoading(false);
         toast.error("Signin failed. Please try again.");
         console.error("Signin error:", error);
       });
@@ -171,7 +172,7 @@ function Login() {
                       type="submit"
                       className="w-full md:w-1/2 flex items-center justify-between px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                     >
-                      <span>Sign In </span>
+                      {loading ? <Loader /> : <span>Sign In</span>}
 
                       <svg
                         xmlns="http://www.w3.org/2000/svg"

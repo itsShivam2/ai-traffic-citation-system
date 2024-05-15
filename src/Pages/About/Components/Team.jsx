@@ -20,12 +20,12 @@ function Team() {
             <h2 className="mb-4 text-center text-5xl font-bold font-[Fahkwang] text-gray-100 md:text-6xl">
               Team
             </h2>
-            <p className="text-gray-100 font-[Montserrat] dark:text-gray-300 lg:mx-auto lg:w-8/12">
+            {/* <p className="text-gray-100 font-[Montserrat] dark:text-gray-300 lg:mx-auto lg:w-8/12">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
               eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
               enim ad minim veniam, quis nostrud exercitation ullamco laboris
               nisi ut aliquip ex ea commodo consequat.
-            </p>
+            </p> */}
           </div>
           <div className="grid items-center gap-12 md:grid-cols-3">
             <div className="space-y-4 text-center">
