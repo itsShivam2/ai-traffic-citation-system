@@ -4,7 +4,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Layout from "../../Components/Layout/Layout";
 import Spinner from "../../Components/Spinner/Spinner";
-
+import * as IconsAndImages from "../../Assets/IconsAndImages";
 function ChallanDetails() {
   const navigate = useNavigate();
   const { challanId } = useParams();
@@ -55,15 +55,15 @@ function ChallanDetails() {
   return (
     <Layout>
       <div className="bg-[#111827] pt-8">
-        <h2 className="text-3xl text-center text-gray-100 font-semibold font-[Fahkwang] mb-8">
-          Challan Details
+        <h2 className="text-4xl text-center text-gray-100 font-semibold font-[Fahkwang] mb-8">
+          Challan
         </h2>
 
         {challan ? (
           <section className="bg-[#111827] container px-4 pb-16 mx-auto">
             <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow rounded-lg">
               <div className="p-6">
-                <h3 className="text-xl font-[Fahkwang] font-bold mb-4">
+                <h3 className="text-2xl text-center font-[Fahkwang] font-bold mb-4">
                   Challan Information
                 </h3>
                 <div className="flex flex-col md:flex-row">
@@ -76,35 +76,15 @@ function ChallanDetails() {
                     </p>
                     <p>
                       <span className="font-semibold font-[Fahkwang]">
-                        Issued At:
+                        Vehicle License Plate:
                       </span>{" "}
-                      {challan.issuedAt}
-                    </p>
-                    <p>
-                      <span className="font-semibold font-[Fahkwang]">
-                        Violation:
-                      </span>{" "}
-                      {challan.violation}
+                      {challan.vehicleLicensePlate}
                     </p>
                     <p>
                       <span className="font-semibold font-[Fahkwang]">
                         Fine Amount:
                       </span>{" "}
                       {challan.fineAmount}
-                    </p>
-                  </div>
-                  <div className="md:w-1/2 md:pl-6">
-                    <p>
-                      <span className="font-semibold font-[Fahkwang]">
-                        Status:
-                      </span>{" "}
-                      {challan.status}
-                    </p>
-                    <p>
-                      <span className="font-semibold font-[Fahkwang]">
-                        Vehicle License Plate:
-                      </span>{" "}
-                      {challan.vehicleLicensePlate}
                     </p>
                     <p>
                       <span className="font-semibold font-[Fahkwang]">
@@ -113,6 +93,44 @@ function ChallanDetails() {
                       {challan.officerId}
                     </p>
                   </div>
+                  <div className="md:w-1/2 md:pl-6">
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Issued At:
+                      </span>{" "}
+                      {challan.issuedAt
+                        ? new Date(challan.issuedAt).toLocaleString("en-IN", {
+                            timeZone: "Asia/Kolkata",
+                            dateStyle: "medium",
+                            timeStyle: "medium",
+                          })
+                        : "Date Not Available"}
+                    </p>
+
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Violation:
+                      </span>{" "}
+                      {challan.violation}
+                    </p>
+                    <p>
+                      <span className="font-semibold font-[Fahkwang]">
+                        Status:
+                      </span>{" "}
+                      {challan.status}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-full flex justify-center items-center my-4">
+                  {challan.vehicleImage && (
+                    <div className="md:w-1/2 md:pl-6 flex justify-center items-center">
+                      <img
+                        src={challan.vehicleImage}
+                        alt="Vehicle Image"
+                        className="max-w-full h-auto rounded-md"
+                      />
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

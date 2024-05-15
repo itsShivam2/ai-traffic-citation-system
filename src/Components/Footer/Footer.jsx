@@ -7,11 +7,6 @@ function Footer() {
       <footer className="w-full bg-[#000000] text-white text-2xl font-[Fahkwang] py-12">
         <div className="md:px-12 lg:px-28">
           <div className="container m-auto space-y-6 text-gray-600 dark:text-gray-300">
-            {/* <img
-              src={IconsAndImages.Logo}
-              alt="logo tailus"
-              className="m-auto w-40"
-            />*/}
             <ul
               role="list"
               className="flex flex-col items-center justify-center gap-4 py-4 sm:flex-row sm:gap-8"
@@ -22,7 +17,7 @@ function Footer() {
                 </Link>
               </li>
               <li role="listitem">
-                <Link href="/about" className="hover:text-primary text-white">
+                <Link to="/about" className="hover:text-primary text-white">
                   About
                 </Link>
               </li>

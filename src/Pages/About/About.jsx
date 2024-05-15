@@ -19,14 +19,12 @@ function About() {
     <div>
       <Layout>
         <div className="bg-[#111827]">
-          <h1 className="text-[4rem] sm:text-[6rem] text-white font-[Fahkwang] text-left md:text-center px-8 pt-8 reveal-element">
+          <h1 className="text-[4rem] sm:text-[6rem] text-white font-[Fahkwang] text-center px-8 pt-8 reveal-element">
             About Us
           </h1>
           <hr className="border-t border-gray-100 mx-8" />
 
-          <div
-            className="w-full bg-center bg-cover h-[34rem]"
-          >
+          <div className="w-full bg-center bg-cover h-[34rem]">
             <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
               <div className="flex flex-col items-center text-center">
                 <h1 className="text-4xl font-semibold font-[Fahkwang] text-white lg:text-5xl">

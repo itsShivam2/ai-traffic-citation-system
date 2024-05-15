@@ -171,7 +171,7 @@ function Navbar() {
         </div>
       </nav>
       <div
-        className={`absolute right-2 pr-0 top-16 flex justify-end ${
+        className={`absolute right-4 pr-0 top-16 flex justify-end ${
           isUserDropdownOpen ? "" : "hidden"
         }`}
         id="user-dropdown"
