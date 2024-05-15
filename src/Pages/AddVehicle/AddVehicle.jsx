@@ -27,6 +27,7 @@ const AddVehicle = () => {
 
     try {
       setLoading(true);
+
       const response = await axios.post("/api/v1/vehicles", formData, {
         withCredentials: true,
       });
