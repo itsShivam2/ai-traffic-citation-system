@@ -10,7 +10,7 @@ function AddChallan() {
   const [formData, setFormData] = useState({
     vehicleType: "",
     violation: "",
-    "vehicle-image": null,
+    imageFile: null,
   });
 
   const [apiResponse, setApiResponse] = useState(null);
@@ -58,7 +58,7 @@ function AddChallan() {
         setFormData({
           vehicleType: "",
           violation: "",
-          "vehicle-image": null,
+          imageFile: null,
         });
 
         setTimeout(() => {
@@ -155,7 +155,7 @@ function AddChallan() {
             {/* Image */}
             <div className="mb-6">
               <label
-                htmlFor="vehicle-image"
+                htmlFor="imageFile"
                 className="block text-sm text-gray-100 dark:text-gray-200 font-[Fahkwang]"
               >
                 Image
@@ -163,8 +163,8 @@ function AddChallan() {
 
               <input
                 type="file"
-                id="vehicle-image"
-                name="vehicle-image"
+                id="imageFile"
+                name="imageFile"
                 required
                 onChange={handleFileChange}
                 className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-500 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-100 dark:bg-gray-900 dark:focus:border-blue-300"
