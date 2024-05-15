@@ -14,6 +14,7 @@ function Navbar() {
   const [isUserDropdownOpen, setUserDropdownOpen] = useState(false);
   const [isNavbarLinksOpen, setNavbarLinksOpen] = useState(false);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const role = useSelector((state) => state.auth.role);
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -21,9 +22,7 @@ function Navbar() {
       .then(({ success }) => {
         if (success) {
           toast.success("Logout successful");
-          setTimeout(() => {
-            navigate("/");
-          }, 1000);
+          navigate("/");
         } else {
           toast.error("Logout failed. Please try again.");
         }
@@ -48,23 +47,28 @@ function Navbar() {
     }
   };
 
-  console.log(userDetails);
-
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get("/api/v1/users/me", {
+        const response = await axios.get(`/api/v1/${role}s/me`, {
           withCredentials: true,
         });
-        setUserDetails(response.data.user);
-        console.log(response.data.user);
+        if (role === "user") {
+          setUserDetails(response.data.user);
+        } else if (role === "officer") {
+          setUserDetails(response.data.officer);
+        }
       } catch (error) {
         console.error("Error fetching user details:", error);
       }
     };
 
+    if (role) {
+      fetchUserDetails();
+    }
+
     fetchUserDetails();
-  }, []);
+  }, [role]);
 
   return (
     <>
@@ -86,7 +90,7 @@ function Navbar() {
           <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             <button
               type="button"
-              className="flex items-center justify-center text-sm rounded-full md:me-0 focus:ring-4 focus:ring-gray-600"
+              className="flex items-center justify-center text-sm rounded-full md:me-0"
               id="user-menu-button"
               onClick={toggleUserDropdown}
               aria-expanded={isUserDropdownOpen ? "true" : "false"}
@@ -94,11 +98,6 @@ function Navbar() {
               data-dropdown-placement="bottom"
             >
               <span className="sr-only">Open user menu</span>
-              {/* <img
-                className="w-8 h-8 rounded-full"
-                src="/docs/images/people/profile-picture-3.jpg"
-                alt="user photo"
-              /> */}
               {isAuthenticated ? (
                 <FaUserCircle size={36} color="white" />
               ) : (
@@ -172,7 +171,7 @@ function Navbar() {
         </div>
       </nav>
       <div
-        className={`absolute right-2 pr-2 flex justify-end ${
+        className={`absolute right-2 pr-0 top-16 flex justify-end ${
           isUserDropdownOpen ? "" : "hidden"
         }`}
         id="user-dropdown"
@@ -198,7 +197,7 @@ function Navbar() {
               <>
                 <li>
                   <Link
-                    to="/user"
+                    to={`/${role}`}
                     className="w-full block px-4 py-2 text-sm text-left font-[Fahkwang] hover:bg-gray-600 text-gray-200 hover:text-white"
                   >
                     Dashboard

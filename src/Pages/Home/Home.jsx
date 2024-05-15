@@ -1,22 +1,21 @@
-import React,{useEffect} from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import * as IconsAndImages from "../../Assets/IconsAndImages";
 import Layout from "../../Components/Layout/Layout";
 import TechCards from "../../Components/TechCards/TechCards";
 import ScrollReveal from "scrollreveal";
 
-
-  function Home() {
-    useEffect(() => {
-      ScrollReveal().reveal(".reveal-element", {
-        origin: "bottom",
-        distance: "20px",
-        duration: 1000,
-        delay: 200,
-        easing: "ease-in-out",
-        reset: true,
-      });
-    }, []);
+function Home() {
+  useEffect(() => {
+    ScrollReveal().reveal(".reveal-element", {
+      origin: "bottom",
+      distance: "20px",
+      duration: 1000,
+      delay: 200,
+      easing: "ease-in-out",
+      reset: true,
+    });
+  }, []);
 
   return (
     <div className="bg-[#111827]">
@@ -65,7 +64,7 @@ import ScrollReveal from "scrollreveal";
           </div>
         </div>
         {/*  */}
-        <div className="bg-[rgba(44,51,63)] mt-16 reveal-element">
+        {/* <div className="bg-[rgba(44,51,63)] mt-16 reveal-element">
           <div className="flex flex-col gap-10 justify-between w-11/12 max-w-maxContent text-white mx-auto ">
             <div className="grid grid-cols-2 md:grid-cols-4 text-center">
               <div className="flex flex-col py-10">
@@ -94,7 +93,7 @@ import ScrollReveal from "scrollreveal";
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/*  */}
         <TechCards />
       </Layout>

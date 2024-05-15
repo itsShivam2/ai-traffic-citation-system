@@ -33,19 +33,17 @@ function OurVision() {
                   <strong>THAT'S US!</strong>
                 </p>
               </div>
-              <div className="relative w-fit mt-8 sm:mt-12">
+              {/* <div className="relative w-fit mt-8 sm:mt-12">
                 <div className="absolute -inset-5">
                   <div className="w-full h-full max-w-sm mx-auto lg:mx-0 opacity-30 blur-lg filter bg-gradient-to-r from-yellow-400 via-pink-500 to-green-600"></div>
                 </div>
-                <a
-                  href="#"
-                  title=""
+                <button
                   className="relative z-10 inline-flex items-center justify-center w-full px-8 py-3 text-lg font-bold font-[Fahkwang] text-white transition-all duration-200 bg-gray-900 border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
                   role="button"
                 >
                   Know More
-                </a>
-              </div>
+                </button>
+              </div> */}
             </div>
 
             <div>
@@ -64,10 +62,10 @@ function OurVision() {
                         type="video/mp4"
                       ></source>
                     </video> */}
-                    <img
+                    {/* <img
                       src={IconsAndImages.Vision}
                       className="feature__img inline-flex items-center justify-center text-base font-bold text-white px-1 py-1 bg-gray-900 border-transparent relative z-10 leading-7 transition-all duration-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 hover:bg-gray-600 focus:ring-offset-[#FFE942] origin-left rotate-2"
-                    />
+                    /> */}
                   </div>
                 </div>
               </div>

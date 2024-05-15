@@ -11,14 +11,16 @@ export const signup = (userData, apiEndpoint) => async (dispatch) => {
       { withCredentials: true }
     );
     if (response.status === 201) {
+      const { role } = response.data;
       dispatch(
         setUser({
           isAuthenticated: true,
+          role: role,
         })
       );
       console.log("User created successfully:", response.data);
       dispatch(setLoading(false));
-      return { success: true };
+      return { success: true, role };
     }
   } catch (error) {
     dispatch(setError(error.response.data.message));
