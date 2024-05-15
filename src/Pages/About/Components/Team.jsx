@@ -15,28 +15,35 @@ function Team() {
   return (
     <div className="reveal-element">
       <div className="bg-[#111827] dark:bg-gray-800 py-20">
+        {/*  */}
+        <div className="container mx-auto px-6 mb-16 md:px-12 xl:px-32">
+          <div className="mb-8">
+            <h2 className="mb-4 text-center text-5xl font-bold font-[Fahkwang] text-gray-100 md:text-6xl">
+              Project Supervisor
+            </h2>
+          </div>
+          <div className="flex items-center justify-center">
+            <div className="space-y-4 text-center">
+              <div>
+                <h4 className="text-3xl text-white font-[Fahkwang]">
+                  Rohit Kumar Tiwari
+                </h4>
+                <span className="block text-lg text-gray-100 font-[Montserrat]">
+                  (Associate Professor) <br/> Comuter Science & Enginnering Department
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/*  */}
         <div className="container mx-auto px-6 md:px-12 xl:px-32">
-          <div className="mb-16">
+          <div className="mb-8">
             <h2 className="mb-4 text-center text-5xl font-bold font-[Fahkwang] text-gray-100 md:text-6xl">
               Team
             </h2>
-            {/* <p className="text-gray-100 font-[Montserrat] dark:text-gray-300 lg:mx-auto lg:w-8/12">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p> */}
           </div>
           <div className="grid items-center gap-12 md:grid-cols-3">
             <div className="space-y-4 text-center">
-              <img
-                className="mx-auto h-64 w-64 rounded-xl object-cover md:h-40 md:w-40 lg:h-64 lg:w-64"
-                src={IconsImages.Team}
-                alt="Sanjay Chaurasiya"
-                loading="lazy"
-                width="640"
-                height="805"
-              />
               <div>
                 <h4 className="text-2xl text-white font-[Fahkwang]">
                   Sanjay Chaurasiya
@@ -47,14 +54,6 @@ function Team() {
               </div>
             </div>
             <div className="space-y-4 text-center">
-              <img
-                className="mx-auto h-64 w-64 rounded-xl object-cover md:h-64 md:w-48 lg:h-80 lg:w-64"
-                src={IconsImages.Team}
-                alt="Shardul Sisodiya"
-                loading="lazy"
-                width="1000"
-                height="667"
-              />
               <div>
                 <h4 className="text-2xl text-white font-[Fahkwang]">
                   Shardul Sisodiya
@@ -65,14 +64,6 @@ function Team() {
               </div>
             </div>
             <div className="space-y-4 text-center">
-              <img
-                className="mx-auto h-64 w-64 rounded-xl object-cover md:h-40 md:w-40 lg:h-64 lg:w-64"
-                src={IconsImages.Team}
-                alt="Shivam Gupta"
-                loading="lazy"
-                width="1000"
-                height="667"
-              />
               <div>
                 <h4 className="text-2xl text-white font-[Fahkwang]">
                   Shivam Gupta

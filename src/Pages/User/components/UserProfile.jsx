@@ -70,7 +70,10 @@ function UserProfile() {
             </h1>
             <AddVehicleButton />
           </div>
-          <RegisteredVehicles vehicles={userDetails?.vehicles || []} />
+          <RegisteredVehicles
+            vehicles={userDetails?.vehicles || []}
+            loading={loading}
+          />
         </div>
       </div>
     </div>

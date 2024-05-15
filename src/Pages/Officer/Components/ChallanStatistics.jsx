@@ -115,7 +115,16 @@ function ChallanStatistics() {
                             </div>
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
-                            {challan.issuedAt}
+                            {challan.issuedAt
+                              ? new Date(challan.issuedAt).toLocaleString(
+                                  "en-IN",
+                                  {
+                                    timeZone: "Asia/Kolkata",
+                                    dateStyle: "medium",
+                                    timeStyle: "medium",
+                                  }
+                                )
+                              : "Date Not Available"}
                           </td>
                           <td className="px-4 py-4 text-sm text-gray-100 whitespace-nowrap">
                             {challan.vehicleLicensePlate}

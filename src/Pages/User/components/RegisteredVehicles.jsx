@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-
-function RegisteredVehicles({ vehicles }) {
+import Spinner from "../../../Components/Spinner/Spinner";
+function RegisteredVehicles({ vehicles, loading }) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
   const totalPages = Math.ceil(vehicles.length / itemsPerPage);
@@ -51,7 +51,16 @@ function RegisteredVehicles({ vehicles }) {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900 text-gray-100 font-[Montserrat]">
-                  {vehicles.length > 0 ? (
+                  {loading ? (
+                    <td
+                      className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap"
+                      colSpan="6"
+                    >
+                      <div className="min-h-[200px] w-full inline-flex items-center justify-center gap-x-3">
+                        <Spinner />
+                      </div>
+                    </td>
+                  ) : vehicles.length > 0 ? (
                     paginatedVehicles.map((vehicle, index) => (
                       <tr key={index}>
                         <td className="px-4 py-4 text-sm font-medium whitespace-nowrap">
