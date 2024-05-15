@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Spinner from "../../../Components/Spinner/Spinner";
+import { TbUserHexagon } from "react-icons/tb";
 function OfficerProfile() {
   const [officerDetails, setOfficerDetails] = useState(null);
   const [Loading, setLoading] = useState(false);
@@ -30,11 +31,12 @@ function OfficerProfile() {
         <div className="bg-[#111827] w-full h-full p-6 shadow-md rounded-xl sm:px-12">
           {officerDetails ? (
             <>
-              <img
+              {/* <img
                 src={officerDetails?.image}
                 alt=""
                 className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"
-              />
+              /> */}
+              <TbUserHexagon color="white" className="w-32 h-32 mx-auto rounded-full dark:bg-gray-500 aspect-square"/>
               <div className="space-y-4 text-center font-[Fahkwang] divide-y dark:divide-gray-700">
                 <div className="my-2 space-y-1">
                   <h2 className="text-xl font-semibold sm:text-2xl text-gray-100">

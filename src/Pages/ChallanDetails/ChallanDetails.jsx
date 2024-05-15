@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Layout from "../../Components/Layout/Layout";
 import Spinner from "../../Components/Spinner/Spinner";
 
 function ChallanDetails() {
+  const navigate = useNavigate();
   const { challanId } = useParams();
   console.log("challanId:", challanId);
   const [challan, setChallan] = useState(null);
@@ -126,19 +127,25 @@ function ChallanDetails() {
           </section>
         )}
 
-        {isAuthenticated &&
-          role === "user" &&
-          challan &&
-          challan.status !== "PAID" && (
-            <section className="w-full flex items-center justify-center pb-4">
+        <section className="w-full flex items-center justify-center pb-4 space-x-4">
+          <button
+            onClick={() => navigate(-1)}
+            className="bg-gray-700 hover:bg-gray-800 text-lg text-white font-bold font-[Fahkwang] py-2 px-6 rounded mb-2"
+          >
+            Back
+          </button>
+          {isAuthenticated &&
+            role === "user" &&
+            challan &&
+            challan.status !== "PAID" && (
               <button
                 onClick={handlePayClick}
-                className="bg-blue-500 hover:bg-blue-700 text-lg text-white font-bold font-[Fahkwang] py-2 px-6 rounded"
+                className="bg-blue-500 hover:bg-blue-700 text-lg text-white font-bold font-[Fahkwang] py-2 px-6 rounded mb-2"
               >
                 Pay
               </button>
-            </section>
-          )}
+            )}
+        </section>
       </div>
     </Layout>
   );

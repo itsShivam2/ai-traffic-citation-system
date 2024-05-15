@@ -98,7 +98,7 @@ function ChallanStatistics() {
                         className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap"
                         colSpan="6"
                       >
-                        <div className="w-full inline-flex items-center justify-center gap-x-3">
+                        <div className="min-h-[200px] w-full inline-flex items-center justify-center gap-x-3">
                           <Spinner />
                         </div>
                       </td>
@@ -118,7 +118,8 @@ function ChallanStatistics() {
                             {challan.vehicleLicensePlate}
                           </td>
                           <td className="px-4 py-4 text-sm font-medium text-gray-100 whitespace-nowrap">
-                            {challan.status === "PAID" ? (
+                            {challan.status === "PAID" ||
+                            challan.status === "ISSUED" ? (
                               <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 text-emerald-500 bg-white">
                                 <svg
                                   width="12"
