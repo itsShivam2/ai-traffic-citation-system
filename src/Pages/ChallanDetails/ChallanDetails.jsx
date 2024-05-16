@@ -38,7 +38,7 @@ function ChallanDetails() {
 
   const handlePayClick = async () => {
     try {
-      const response = await axios.patch(`/api/v1/challans/${challanId}`, {
+      const response = await axios.patch(`/api/v1/challans/${challanId}/pay`, {
         withCredentials: true,
       });
       if (response.status === 200) {
@@ -122,10 +122,10 @@ function ChallanDetails() {
                   </div>
                 </div>
                 <div className="w-full flex justify-center items-center my-4">
-                  {challan.vehicleImage && (
+                  {challan.image && (
                     <div className="md:w-1/2 md:pl-6 flex justify-center items-center">
                       <img
-                        src={challan.vehicleImage}
+                        src={`/${challan.image}`}
                         alt="Vehicle Image"
                         className="max-w-full h-auto rounded-md"
                       />
