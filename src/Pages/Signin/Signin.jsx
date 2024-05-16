@@ -135,17 +135,11 @@ function Login() {
                 >
                   <div className="col-span-2">
                     <label className="block mb-2 text-sm text-gray-100 dark:text-gray-200">
-                      {selectedTab === "officer"
-                        ? "Officer ID"
-                        : "Email Address"}
+                      Email Address
                     </label>
                     <input
                       type="email"
-                      placeholder={
-                        selectedTab === "officer"
-                          ? "Enter your officer ID"
-                          : "johndoe@example.com"
-                      }
+                      placeholder="johndoe@example.com"
                       name={selectedTab === "officer" ? "email" : "email"}
                       required
                       value={formData.email}
